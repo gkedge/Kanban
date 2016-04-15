@@ -4,31 +4,30 @@ const path = require('path'),
     NpmInstallPlugin = require('npm-install-webpack-plugin'),
     pkg = require('./package.json'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
-    CleanPlugin = require('clean-webpack-plugin');
+    CleanPlugin = require('clean-webpack-plugin'),
+    ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
     app: path.join(__dirname, 'app'),
-    build: path.join(__dirname, 'build')
+    build: path.join(__dirname, 'build'),
+    style: path.join(__dirname, 'app/main.css')
 };
 
 process.env.BABEL_ENV = TARGET;
 
 const common = {
     entry: {
-        app: PATHS.app
+        app: PATHS.app,
+        style: PATHS.style
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
     },
     module: {
         loaders: [
-            {
-                test: /\.css$/,
-                loaders: ['style', 'css'],
-                include: PATHS.app
-            },
-            {
+           {
                 test: /\.jsx?$/,
                 loaders: ['babel?cacheDirectory'],
                 include: PATHS.app
@@ -66,6 +65,15 @@ if (TARGET === 'start' || !TARGET) {
             host: process.env.HOST,
             port: process.env.PORT || 8888
         },
+        module: {
+            loaders: [
+                {
+                    test: /\.css$/,
+                    loaders: ['style', 'css'],
+                    include: PATHS.app
+                }
+            ]
+        },
         plugins: [
             new webpack.HotModuleReplacementPlugin(),
             new NpmInstallPlugin({
@@ -75,7 +83,11 @@ if (TARGET === 'start' || !TARGET) {
     });
 }
 
-if (TARGET === 'build') {
+
+if (TARGET === 'build' || TARGET === 'stats') {
+    const extractCSS = new ExtractTextPlugin('[name].[chunkhash].css');
+    const extractLESS = new ExtractTextPlugin('[name].[chunkhash].less');
+
     module.exports = merge(common, {
         entry: {
             vendor: Object.keys(pkg.dependencies).filter(function (v) {
@@ -91,9 +103,28 @@ if (TARGET === 'build') {
             chunkFilename: '[chunkhash].js'
         },
 
+        module: {
+            loaders: [
+                // Extract CSS during build
+                {
+                    test: /\.css$/i,
+                    loader: extractCSS.extract(['css','sass']),
+                    include: PATHS.app
+                },
+                {
+                    test: /\.less/i,
+                    loader: extractLESS.extract(['css','less']),
+                    include: PATHS.app
+                }
+
+            ]
+        },
         plugins: [
             new CleanPlugin([PATHS.build]),
-
+            // Output extracted CSS to a file
+            extractCSS,
+            extractLESS,
+            new webpack.optimize.DedupePlugin(),
             // Extract vendor and manifest files
             new webpack.optimize.CommonsChunkPlugin({
                 names: ['vendor', 'manifest']

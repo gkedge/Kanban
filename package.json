@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server"
+    "stats": "webpack --profile --json > stats.json",
+    "start": "webpack-dev-server",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [
     "webpack",
@@ -22,13 +24,17 @@
     "babel-preset-survivejs-kanban": "^0.3.3",
     "clean-webpack-plugin": "^0.1.8",
     "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "gh-pages": "^0.11.0",
     "html-webpack-plugin": "^2.15.0",
     "html-webpack-template": "^4.0.0",
+    "less-loader": "^2.2.3",
+    "node-sass": "^3.4.2",
     "npm-install-webpack-plugin": "^2.0.2",
+    "sass-loader": "^3.2.0",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.13",
     "webpack-dev-server": "^1.14.1",
-    "webpack-info-plugin": "^0.1.0",
     "webpack-merge": "^0.7.3"
   },
   "dependencies": {
