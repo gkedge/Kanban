@@ -1,4 +1,7 @@
-// Reference: http://karma-runner.github.io/0.13/config/configuration-file.html
+/**
+ *  Reference:
+ *  http://karma-runner.github.io/0.13/config/configuration-file.html
+ */
 module.exports = function karmaConfig(config) {
     config.set({
         frameworks: [
@@ -30,14 +33,14 @@ module.exports = function karmaConfig(config) {
             // Reference: http://webpack.github.io/docs/testing.html
             // Reference: https://github.com/webpack/karma-webpack
             // Convert files with webpack and load sourcemaps
-            'app/**/*.jsx'   : ['coverage'],
+            'app/**/*.jsx'       : ['coverage'],
             // './build/app.*.js'   : ['webpack'],
             'specs/**/*.spec.jsx': ['webpack', 'sourcemap']
         },
 
         browsers: [
             // Run tests using PhantomJS
-            'PhantomJS', 'Chrome', 'Firefox'
+            'PhantomJS'/*, 'Chrome', 'Firefox'*/
         ],
 
         singleRun: true,

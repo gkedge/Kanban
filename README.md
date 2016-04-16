@@ -37,12 +37,13 @@ Using [Karma with WebPack](http://mike-ward.net/2015/09/07/tips-on-setting-up-ka
 | babel-eslint                         | ESLint using Babel as the parser.                                                                 |
 | isparta-instrumenter-loader          | Instrument Babel code using IsParta; leverages [Istanbul](https://github.com/gotwarlost/istanbul) |
 | react-addons-test-utils              | Tools to assist testing React.                                                                    |
+| react-dnd-test-backend               | [Test React Dnd](http://gaearon.github.io/react-dnd/docs-test-backend.html).                      |
 | legit-tests                          | Replacement for ```react-addons-test-utils```                                                     |
 | karma                                | [Karama](http://karma-runner.github.io/0.13/index.html)                                           |
 | karma-coverage                       | Karma adapter to run Istanbul code coverage.                                                      |
 | karma-babel-preprocessor             | Preprocessor to compile ES6 on the fly with Babel.                                                |
 | karma-mocha                          | Karma adapter to leverage Mocha. *See 'mocha' below&hellip;*                                      |
-| karma-chai                           | Karma adapter to leverage Chai. *See 'chai' below&hellip;
+| karma-chai                           | Karma adapter to leverage Chai. *See 'chai' below&hellip;                                         |
 | karma-phantomjs-launcher             | Karma PhantomJS launcher.                                                                         |
 | karma-firefox-launcher               | Karma Firefox launcher.                                                                           |
 | karma-chrome-launcher                | Karma Chrome launcher.                                                                            |
