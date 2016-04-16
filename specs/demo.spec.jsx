@@ -1,8 +1,8 @@
-import assert from 'assert';
-var expect = require('chai').expect;
+import {expect} from 'chai';
 
 describe('add', () => {
     it('adds', () => {
-        assert.equal(1 + 1, 2);
+        expect(1 + 1).to.equal(2);
     });
+    
 });

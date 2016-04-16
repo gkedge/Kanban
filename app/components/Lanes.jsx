@@ -7,4 +7,4 @@ export default ({lanes}) => {
             <Lane className="lane" key={lane.id} lane={lane} />
         )}</div>
     );
-}
+};

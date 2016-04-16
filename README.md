@@ -42,6 +42,7 @@ Using [Karma with WebPack](http://mike-ward.net/2015/09/07/tips-on-setting-up-ka
 | karma-coverage                       | Karma adapter to run Istanbul code coverage.                                                      |
 | karma-babel-preprocessor             | Preprocessor to compile ES6 on the fly with Babel.                                                |
 | karma-mocha                          | Karma adapter to leverage Mocha. *See 'mocha' below&hellip;*                                      |
+| karma-chai                           | Karma adapter to leverage Chai. *See 'chai' below&hellip;
 | karma-phantomjs-launcher             | Karma PhantomJS launcher.                                                                         |
 | karma-firefox-launcher               | Karma Firefox launcher.                                                                           |
 | karma-chrome-launcher                | Karma Chrome launcher.                                                                            |
@@ -56,3 +57,11 @@ Using [Karma with WebPack](http://mike-ward.net/2015/09/07/tips-on-setting-up-ka
 | react-unit                           | Obviates the need for PhantomJS.                                                                  |
 | phantomjs-prebuilt                   | Installer for PhantomJS, headless webkit with JS API.                                             |
 | phantomjs-polyfill                   | Polyfill for ```function.prototype.bind``` missing from PhantomJS.                                |
+
+
+Deploy
+------
+
+| Deployment Package                   | Reason                                                     |
+|:-------------------------------------|:---------------------------------------------------------- |
+| gh-pages                             |  Task for publishing files to a gh-pages branch on GitHub. |

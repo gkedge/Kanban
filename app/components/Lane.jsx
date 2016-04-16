@@ -7,7 +7,7 @@ import NoteActions from '../actions/NoteActions';
 import LaneActions from '../actions/LaneActions';
 import NoteStore from '../stores/NoteStore';
 import autobind from 'autobind-decorator';
-import ItemTypes from '../constants/itemTypes'
+import ItemTypes from '../constants/itemTypes';
 
 const noteTarget = {
     hover(targetProps, monitor) {
@@ -80,8 +80,8 @@ export default class Lane extends React.Component {
         LaneActions.attachToLane({
             noteId: note.id,
             laneId
-        })
-    };
+        });
+    }
 
     @autobind
     deleteNote(noteId, e) {
@@ -103,25 +103,25 @@ export default class Lane extends React.Component {
         }
 
         LaneActions.update({id: laneId, name, editing: false});
-    };
+    }
 
     @autobind
     deleteLane() {
         const laneId = this.props.lane.id;
 
         LaneActions.delete(laneId);
-    };
+    }
 
     @autobind
     activateLaneEdit() {
         const laneId = this.props.lane.id;
 
         LaneActions.update({id: laneId, editing: true});
-    };
+    }
 
     @autobind
     activateNoteEdit(id) {
         NoteActions.update({id, editing: true});
-    };
+    }
 
 }

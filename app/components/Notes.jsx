@@ -21,4 +21,4 @@ export default ({notes, onValueClick, onEdit, onDelete}) => {
                 </Note>
             )}</ul>
     );
-}
+};

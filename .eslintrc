@@ -2,6 +2,8 @@
   "extends": "eslint:recommended",
   "parser": "babel-eslint",
   "env": {
+    "es6": false,
+    "worker": true,
     "browser": true,
     "node": true,
     "mocha": true
@@ -11,12 +13,14 @@
   ],
   "rules": {
     "no-console": 0,
+    "semi": ["error", "always"],
     "new-cap": 0,
     "strict": 0,
     "no-underscore-dangle": 0,
     "no-use-before-define": 0,
+    "no-unused-vars": ["error", { "varsIgnorePattern": "(_decc||_value)" }],
     "eol-last": 0,
-    "quotes": [2, "single"],
+    "quotes": [0, "single"],
     "jsx-quotes": 1,
     "react/jsx-no-undef": 1,
     "react/jsx-uses-react": 1,

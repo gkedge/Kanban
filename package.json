@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "lint": "eslint . --ext .js --ext .jsx",
+    "lint": "eslint . --fix --ext .js --ext .jsx",
     "stats": "webpack --profile --json > stats.json",
     "start": "webpack-dev-server",
     "deploy": "gh-pages -d build",
@@ -39,6 +39,7 @@
     "isparta-instrumenter-loader": "^1.0.0",
     "karma": "^0.13.22",
     "karma-babel-preprocessor": "^6.0.1",
+    "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.2.3",
     "karma-coverage": "^0.5.5",
     "karma-firefox-launcher": "^0.1.7",

@@ -6,8 +6,9 @@ const path = require('path'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
     CleanPlugin = require('clean-webpack-plugin'),
     ExtractTextPlugin = require('extract-text-webpack-plugin'),
-    stylelint = require('stylelint'),
-    configSuitcss = require('stylelint-config-suitcss');
+    stylelint = require('stylelint');
+// ,
+//     configSuitcss = require('stylelint-config-suitcss');
 
 
 const TARGET = process.env.npm_lifecycle_event;
@@ -22,7 +23,7 @@ process.env.BABEL_ENV = TARGET;
 
 const common = {
     entry: {
-        app: PATHS.app,
+        app: PATHS.app
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
@@ -47,15 +48,7 @@ const common = {
                 'color-hex-case': 'lower'
             }
         })];
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: 'node_modules/html-webpack-template/index.ejs',
-            title: 'Kanban app',
-            appMountId: 'app',
-            inject: false
-        })
-    ]
+    }
 };
 
 if (TARGET === 'start' || !TARGET) {
@@ -92,6 +85,12 @@ if (TARGET === 'start' || !TARGET) {
             ]
         },
         plugins: [
+            new HtmlWebpackPlugin({
+                template: 'node_modules/html-webpack-template/index.ejs',
+                title: 'Kanban app',
+                appMountId: 'app',
+                inject: false
+            }),
             new webpack.HotModuleReplacementPlugin(),
             new NpmInstallPlugin({
                 save: true // --save
@@ -130,11 +129,15 @@ if (TARGET === 'build' || TARGET === 'stats') {
                     include: PATHS.app
                 },
                 {
+                    test: /\.scss$/i,
+                    loader: extractCSS.extract(['css', 'sass']),
+                    include: PATHS.app
+                },
+                {
                     test: /\.less/i,
                     loader: extractLESS.extract(['css', 'less']),
                     include: PATHS.app
                 }
-
             ]
         },
         plugins: [
@@ -147,7 +150,7 @@ if (TARGET === 'build' || TARGET === 'stats') {
             new webpack.optimize.CommonsChunkPlugin({
                 names: ['vendor', 'manifest']
             }),
-            // Setting DefinePlugin affects React librarion size
+            // Setting DefinePlugin affects React library size.
             // DefinePlugin replaces content 'as is' so we need
             // some extra quotes for the generated code to make
             // sense
@@ -158,14 +161,30 @@ if (TARGET === 'build' || TARGET === 'stats') {
                 compress: {
                     warnings: false
                 }
+            }),
+            new HtmlWebpackPlugin({
+                template: 'node_modules/html-webpack-template/index.ejs',
+                title: 'Kanban app',
+                appMountId: 'app',
+                inject: false
             })
         ]
-    })
+    });
 }
 
 if (TARGET === 'test' || TARGET === 'tdd') {
     module.exports = merge(common, {
         devtool: 'inline-source-map',
+        stats: {
+          // Config for minimal console.log mess.
+          assets: false,
+          colors: true,
+          version: false,
+          hash: false,
+          timings: false,
+          chunks: false,
+          chunkModules: false
+        },
         resolve: {
             alias: {
                 'app': PATHS.app
@@ -187,5 +206,6 @@ if (TARGET === 'test' || TARGET === 'tdd') {
                 }
             ]
         }
+        
     });
 }

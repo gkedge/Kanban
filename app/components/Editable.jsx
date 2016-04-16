@@ -1,11 +1,11 @@
 import React from 'react';
-import autobind from 'autobind-decorator'
+import autobind from 'autobind-decorator';
 
 export default class Editable extends React.Component {
     static displayName = 'KanbanEditableInput';
 
     render() {
-        const {value, onEdit, onValueClick, editing, ...props} = this.props;
+        const {editing, ...props} = this.props;
 
         return (
             <div {...props}>
@@ -21,14 +21,14 @@ export default class Editable extends React.Component {
                       defaultValue={this.props.value}
                       onBlur={this.finishEdit}
                       onKeyPress={this.checkEnter}/>;
-    };
+    }
 
     @autobind
     renderDelete() {
         return <button
             className="delete"
             onClick={this.props.onDelete}>x</button>;
-    };
+    }
 
     @autobind
     renderValue() {
@@ -40,14 +40,14 @@ export default class Editable extends React.Component {
                 {onDelete ? this.renderDelete() : null }
             </div>
         );
-    };
+    }
 
     @autobind
     checkEnter(e) {
         if (e.key === 'Enter') {
             this.finishEdit(e);
         }
-    };
+    }
 
     @autobind
     finishEdit(e) {
@@ -56,5 +56,5 @@ export default class Editable extends React.Component {
         if (this.props.onEdit) {
             this.props.onEdit(value);
         }
-    };
+    }
 }
