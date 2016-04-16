@@ -5,14 +5,17 @@ const path = require('path'),
     pkg = require('./package.json'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
     CleanPlugin = require('clean-webpack-plugin'),
-    ExtractTextPlugin = require('extract-text-webpack-plugin');
+    ExtractTextPlugin = require('extract-text-webpack-plugin'),
+    stylelint = require('stylelint'),
+    configSuitcss = require('stylelint-config-suitcss');
 
 
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
     app: path.join(__dirname, 'app'),
     build: path.join(__dirname, 'build'),
-    style: path.join(__dirname, 'app/main.css')
+    style: path.join(__dirname, 'app/main.css'),
+    test: path.join(__dirname, 'specs')
 };
 
 process.env.BABEL_ENV = TARGET;
@@ -20,19 +23,30 @@ process.env.BABEL_ENV = TARGET;
 const common = {
     entry: {
         app: PATHS.app,
-        style: PATHS.style
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
     },
     module: {
         loaders: [
-           {
+            {
                 test: /\.jsx?$/,
-                loaders: ['babel?cacheDirectory'],
+                loaders: ['babel?cacheDirectory', 'eslint'],
+                include: PATHS.app
+            },
+            {
+                test: /\.css$/,
+                loaders: ['postcss'],
                 include: PATHS.app
             }
         ]
+    },
+    postcss: function () {
+        return [stylelint({
+            rules: {
+                'color-hex-case': 'lower'
+            }
+        })];
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -46,6 +60,9 @@ const common = {
 
 if (TARGET === 'start' || !TARGET) {
     module.exports = merge(common, {
+        entry: {
+            style: PATHS.style
+        },
         devtool: 'eval-source-map',
         output: {
             path: PATHS.build,
@@ -95,7 +112,8 @@ if (TARGET === 'build' || TARGET === 'stats') {
                 // due to the way the package has been designed
                 // (no package.json main).
                 return v !== 'alt-utils';
-            })
+            }),
+            style: PATHS.style
         },
         output: {
             path: PATHS.build,
@@ -108,12 +126,12 @@ if (TARGET === 'build' || TARGET === 'stats') {
                 // Extract CSS during build
                 {
                     test: /\.css$/i,
-                    loader: extractCSS.extract(['css','sass']),
+                    loader: extractCSS.extract(['css', 'sass']),
                     include: PATHS.app
                 },
                 {
                     test: /\.less/i,
-                    loader: extractLESS.extract(['css','less']),
+                    loader: extractLESS.extract(['css', 'less']),
                     include: PATHS.app
                 }
 
@@ -142,5 +160,32 @@ if (TARGET === 'build' || TARGET === 'stats') {
                 }
             })
         ]
+    })
+}
+
+if (TARGET === 'test' || TARGET === 'tdd') {
+    module.exports = merge(common, {
+        devtool: 'inline-source-map',
+        resolve: {
+            alias: {
+                'app': PATHS.app
+            }
+        },
+        module: {
+            preLoaders: [
+                {
+                    test: /\.jsx?$/,
+                    loaders: ['isparta-instrumenter'],
+                    include: PATHS.app
+                }
+            ],
+            loaders: [
+                {
+                    test: /\.jsx?$/,
+                    loaders: ['babel?cacheDirectory'],
+                    include: PATHS.test
+                }
+            ]
+        }
     });
 }
