@@ -1,12 +1,21 @@
 {
   "extends": "eslint:recommended",
-  "parser": "babel-eslint",
+  "parser": "babel-eslint",    // Needed for decorators(annotations)
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    },
+    "sourceType": "module"
+  },
   "env": {
     "es6": false,
     "worker": true,
     "browser": true,
     "node": true,
-    "mocha": true
+    "mocha": true,
+    "phantomjs": true
   },
   "plugins": [
     "react"
