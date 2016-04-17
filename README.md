@@ -36,6 +36,7 @@ A ```stats.json``` will have been created that can be uploaded to analyze [here]
 | App Package                   | Reason                                                                                     |
 |:------------------------------|:-------------------------------------------------------------------------------------------|
 | autobind-decorator            | Provides @autobind to bind 'this' to the annotated method.                                 |
+| deep-freeze-node<sup>x</sup>  | Make an entire data structure immutable.                                                   |
 | react-dnd                     | [Drag 'n Drop for React](https://gaearon.github.io/react-dnd/)                             |
 | react-input-field<sup>x</sup> | carefully crafted [input field for React](https://www.npmjs.com/package/react-input-field) |
 | react-datagrid<sup>x</sup>    | carefully crafted [DataGrid for React](http://zippyui.com/react-datagrid/#/)               |
@@ -45,10 +46,15 @@ A ```stats.json``` will have been created that can be uploaded to analyze [here]
 
 Testing
 -------
+![](https://s3.amazonaws.com/codementor_content/2015-Dec-week1/lost.jpg)
 
 Using [Karma with WebPack](http://mike-ward.net/2015/09/07/tips-on-setting-up-karma-testing-with-webpack/)
 
 [Testing in ES6 with Mocha and Babel 6](http://jamesknelson.com/testing-in-es6-with-mocha-and-babel-6/)
+
+[Karma vs Mocha/JSDOM](https://medium.com/podio-engineering-blog/from-karma-to-mocha-with-a-taste-of-jsdom-c9c703a06b21#.87qy2mwxa)  
+
+[Mocha Testing Redux](https://www.codementor.io/reactjs/tutorial/redux-unit-test-mocha-mocking)
 
 | Test Package                         | Reason                                                                                            |
 |:-------------------------------------|:--------------------------------------------------------------------------------------------------|
@@ -60,6 +66,7 @@ Using [Karma with WebPack](http://mike-ward.net/2015/09/07/tips-on-setting-up-ka
 | react-addons-test-utils              | Tools to assist testing React.                                                                    |
 | react-dnd-test-backend               | [Test React Dnd](http://gaearon.github.io/react-dnd/docs-test-backend.html).                      |
 | legit-tests<sup>x</sup>              | Replacement for ```react-addons-test-utils```                                                     |
+| redux-mock-store<sup>x</sup>         | [Test Redux stores](https://github.com/reactjs/redux/blob/master/docs/recipes/WritingTests.md).   |
 | karma                                | [Karama](http://karma-runner.github.io/0.13/index.html)                                           |
 | karma-coverage                       | Karma adapter to run Istanbul code coverage.                                                      |
 | karma-babel-preprocessor             | Preprocessor to compile ES6 on the fly with Babel.                                                |
@@ -72,7 +79,9 @@ Using [Karma with WebPack](http://mike-ward.net/2015/09/07/tips-on-setting-up-ka
 | karma-sourcemap-loader               | Allows Karma to load source maps from transpiled Babel code.                                      |
 | karma-spec-reporter                  | Test reporter, that prints detailed results to console.                                           |
 | karma-webpack                        | The link between the two.                                                                         |
-| karma-webpack-with-fast-source-maps<sup>x</sup> | Fork of ```karma-webpack```. *One or the other!*                                                  |
+| karma-webpack-with-fast-source-maps<sup>x</sup> | Fork of ```karma-webpack```. *One or the other!*                                       |
+| enzyme<sup>x</sup>                   | Testing utility for React that makes it easier to assert, manipulate, and traverse your React Components output. |
+| chai-enzyme<sup>x</sup>              | Chai assertions for ```enzyme```                                                                  |
 | mocha                                | A feature-rich [JavaScript test framework](https://mochajs.org/) that simplifies async testing.   |
 | codeceptjs<sup>x</sup>               | With [CodeceptJS](http://codecept.io/), acceptance tests from user's perspective can be written.  |
 | chai                                 | A BDD / TDD [assertion library](http://chaijs.com/).                                              |
@@ -81,13 +90,16 @@ Using [Karma with WebPack](http://mike-ward.net/2015/09/07/tips-on-setting-up-ka
 | phantomjs-polyfill                   | Polyfill for ```function.prototype.bind``` missing from PhantomJS.                                |
 
 ### [Selenium](http://docs.seleniumhq.org/)
-[Mastering Selenium Testing Tools](http://my.safaribooksonline.com/video/software-engineering-and-development/software-testing/9781783985487)<sup>v</sup>
+[Mastering Selenium Testing Tools](http://my.safaribooksonline.com/video/software-engineering-and-development/software-testing/9781783985487)<sup>v</sup>  
+[Mastering Selenium WebDriver](http://my.safaribooksonline.com/book/web-development/9781784394356) *NOTE: TestNG!*  
+[Selenium Testing Tools Cookbook - Second Edition](http://my.safaribooksonline.com/book/software-engineering-and-development/software-testing/9781784392512) *NOTE: TestNG!*
+[Selenium Maven Archetype](https://github.com/sebarmeli/Selenium2-Java-QuickStart-Archetype) 
+[Gridlastic; Selenium Grid in Cloud])https://www.gridlastic.com/)  
+[Nightwatch](http://nightwatchjs.org/guide#installation) - automated testing framework for web applications and websites, written in Node.js and using the Selenium WebDriver API. 
+[Nightwatch in Gridlastic](https://www.gridlastic.com/nightwatch-js-example.html)  
+[React Starter Kit using Nightwatch](https://github.com/dqdinh/react-webpack-starter)  
+Use [data-selenium-id](http://webdesign.tutsplus.com/tutorials/all-you-need-to-know-about-the-html5-data-attribute--webdesign-9642) to hook in Selenium.
 
-[Mastering Selenium WebDriver](http://my.safaribooksonline.com/book/web-development/9781784394356) (NOTE: TestNG!)
-
-[Selenium Testing Tools Cookbook - Second Edition](http://my.safaribooksonline.com/book/software-engineering-and-development/software-testing/9781784392512) [NOTE: TestNG]
-
-[Selenium Maven Archetype](https://github.com/sebarmeli/Selenium2-Java-QuickStart-Archetype)
 
 <sup>v</sup> - video
 
@@ -108,3 +120,19 @@ Misc
 | jscs<sup>x</sup>   | code style linter/formatter for programmatically enforcing your style guide |
 
 <sup>x</sup> - not currently used.
+
+React
+=====
+
+[Best Practices](https://blog.risingstack.com/react-js-best-practices-for-2016/)
+
+React Form Validation
+---------------------
+
+* Determine which state you need to represent the form. Input values and error messages are the obvious ones to start with, but you may need others at a minimum, such as checkng whether a field has been interacted with yet.
+* Write a render() method which uses that state.
+* Hook up event handlers which update the state as necessary when form input changes.
+* The fun starts when you realise you need to use the same valiation code at different times. For onChange/onBlur, you need to be able to validate fields and update the related state individually. For onSubmit validation, you need to be able to validate every field.
+* Cross-field validation adds to the fun, as does async validation, debouncing inputs and being able to show soft warnings rather than validation errors. Browsers auto-populating fields just adds cruelty when you thought you were done.
+* Depending on how complex your form is, you may not encounter/need all this.
+[The proposal for the upcoming rewrite of redux-form](https://github.com/erikras/redux-form/issues/726) is an interested read related to form validation in React, as it describes two ways to do lots of different things you you need to do to handle forms (the old API and the new). [react-formal](https://github.com/jquense/react-formal) is also interesting as a schema-based approach to form validation. Even if you're not using form libraries, they're solving the same problems you'll be encountering soon.
