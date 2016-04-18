@@ -136,3 +136,16 @@ React Form Validation
 * Cross-field validation adds to the fun, as does async validation, debouncing inputs and being able to show soft warnings rather than validation errors. Browsers auto-populating fields just adds cruelty when you thought you were done.
 * Depending on how complex your form is, you may not encounter/need all this.
 [The proposal for the upcoming rewrite of redux-form](https://github.com/erikras/redux-form/issues/726) is an interested read related to form validation in React, as it describes two ways to do lots of different things you you need to do to handle forms (the old API and the new). [react-formal](https://github.com/jquense/react-formal) is also interesting as a schema-based approach to form validation. Even if you're not using form libraries, they're solving the same problems you'll be encountering soon.
+
+<div class="postman-run-button"
+data-postman-action="collection/import"
+data-postman-var-1="85a11e662f4bb236f750"></div>
+<script type="text/javascript">
+  (function (p,o,s,t,m,a,n) {
+    !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
+    !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild((
+      (n = o.createElement("script")),
+      (n.id = s+t), (n.async = 1), (n.src = m), n
+    ));
+  }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
+</script>
