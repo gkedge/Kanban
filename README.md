@@ -137,4 +137,3 @@ React Form Validation
 * Depending on how complex your form is, you may not encounter/need all this.
 [The proposal for the upcoming rewrite of redux-form](https://github.com/erikras/redux-form/issues/726) is an interested read related to form validation in React, as it describes two ways to do lots of different things you you need to do to handle forms (the old API and the new). [react-formal](https://github.com/jquense/react-formal) is also interesting as a schema-based approach to form validation. Even if you're not using form libraries, they're solving the same problems you'll be encountering soon.
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/85a11e662f4bb236f750)
