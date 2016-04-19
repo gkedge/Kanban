@@ -10,7 +10,8 @@
     "start": "webpack-dev-server",
     "deploy": "gh-pages -d build",
     "test": "karma start",
-    "tdd": "karma start --auto-watch --no-single-run"
+    "tdd": "karma start --auto-watch --no-single-run",
+    "integration": "nightwatch"
   },
   "keywords": [
     "webpack",
@@ -51,6 +52,7 @@
     "karma-webpack": "^1.7.0",
     "less-loader": "^2.2.3",
     "mocha": "^2.4.5",
+    "nightwatch": "^0.8.18",
     "node-sass": "^3.4.2",
     "npm-install-webpack-plugin": "^2.0.2",
     "phantomjs-polyfill": "0.0.2",

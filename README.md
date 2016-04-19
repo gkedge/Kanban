@@ -92,7 +92,7 @@ Using [Karma with WebPack](http://mike-ward.net/2015/09/07/tips-on-setting-up-ka
 ### [Selenium](http://docs.seleniumhq.org/)
 [Mastering Selenium Testing Tools](http://my.safaribooksonline.com/video/software-engineering-and-development/software-testing/9781783985487)<sup>v</sup>  
 [Mastering Selenium WebDriver](http://my.safaribooksonline.com/book/web-development/9781784394356) *NOTE: TestNG!*  
-[Selenium Testing Tools Cookbook - Second Edition](http://my.safaribooksonline.com/book/software-engineering-and-development/software-testing/9781784392512) *NOTE: TestNG!*
+[Selenium Testing Tools Cookbook - Second Edition](http://my.safaribooksonline.com/book/software-engineering-and-development/software-testing/9781784392512) *NOTE: TestNG!*  
 [Selenium Maven Archetype](https://github.com/sebarmeli/Selenium2-Java-QuickStart-Archetype) 
 [Gridlastic; Selenium Grid in Cloud](https://www.gridlastic.com/)  
 [Nightwatch](http://nightwatchjs.org/guide#installation) - automated testing framework for web applications and websites, written in Node.js and using the Selenium WebDriver API. 
@@ -102,6 +102,10 @@ Use [data-selenium-id](http://webdesign.tutsplus.com/tutorials/all-you-need-to-k
 
 
 <sup>v</sup> - video
+
+| Selenium Test Package | Reason                                                                                      |
+|:----------------------|:--------------------------------------------------------------------------------------------|
+| nightwatch            | [End-to-End tests in Node.js](http://nightwatchjs.org/) that run against a Selenium server. |
 
 
 ### Misc Testing
@@ -136,3 +140,4 @@ React Form Validation
 * Cross-field validation adds to the fun, as does async validation, debouncing inputs and being able to show soft warnings rather than validation errors. Browsers auto-populating fields just adds cruelty when you thought you were done.
 * Depending on how complex your form is, you may not encounter/need all this.
 [The proposal for the upcoming rewrite of redux-form](https://github.com/erikras/redux-form/issues/726) is an interested read related to form validation in React, as it describes two ways to do lots of different things you you need to do to handle forms (the old API and the new). [react-formal](https://github.com/jquense/react-formal) is also interesting as a schema-based approach to form validation. Even if you're not using form libraries, they're solving the same problems you'll be encountering soon.
+
