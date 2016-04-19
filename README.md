@@ -92,7 +92,7 @@ Using [Karma with WebPack](http://mike-ward.net/2015/09/07/tips-on-setting-up-ka
 ### [Selenium](http://docs.seleniumhq.org/)
 [Mastering Selenium Testing Tools](http://my.safaribooksonline.com/video/software-engineering-and-development/software-testing/9781783985487)<sup>v</sup>  
 [Mastering Selenium WebDriver](http://my.safaribooksonline.com/book/web-development/9781784394356) *NOTE: TestNG!*  
-[Selenium Testing Tools Cookbook - Second Edition](http://my.safaribooksonline.com/book/software-engineering-and-development/software-testing/9781784392512) *NOTE: TestNG!*
+[Selenium Testing Tools Cookbook - Second Edition](http://my.safaribooksonline.com/book/software-engineering-and-development/software-testing/9781784392512) *NOTE: TestNG!*  
 [Selenium Maven Archetype](https://github.com/sebarmeli/Selenium2-Java-QuickStart-Archetype) 
 [Gridlastic; Selenium Grid in Cloud])https://www.gridlastic.com/)  
 [Nightwatch](http://nightwatchjs.org/guide#installation) - automated testing framework for web applications and websites, written in Node.js and using the Selenium WebDriver API. 
@@ -102,6 +102,10 @@ Use [data-selenium-id](http://webdesign.tutsplus.com/tutorials/all-you-need-to-k
 
 
 <sup>v</sup> - video
+
+| Selenium Test Package | Reason                                                                                      |
+|:----------------------|:--------------------------------------------------------------------------------------------|
+| nightwatch            | [End-to-End tests in Node.js](http://nightwatchjs.org/) that run against a Selenium server. |
 
 
 ### Misc Testing
