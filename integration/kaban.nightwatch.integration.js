@@ -32,7 +32,7 @@ module.exports = {
             .expect.element(kanban.laneSele(laneNum)).to.not.be.present.after(100);
     },
 
-    'Add 1st Note to 1st Lane then remove each': function () {
+    'Add 1st Note to 1st Lane then remove note and lane': function () {
         var laneNum = laneNumCounter++;
         kanban.addLane().expect.element(kanban.laneSele(laneNum))
             .to.be.present.before(100);
@@ -58,7 +58,7 @@ module.exports = {
             .expect.element(kanban.laneSele(laneNum)).to.not.be.present.after(100);
     },
 
-    'Add 3 Notes to 1st Lane': function (client) {
+    'Add 3 Notes to 1st Lane then remove each note and lane': function (client) {
         var laneNum = laneNumCounter++;
         kanban.addLane().expect.element(kanban.laneSele(laneNum))
             .to.be.visible.before(100);
@@ -106,7 +106,7 @@ module.exports = {
             .expect.element(kanban.laneSele(laneNum)).to.not.be.present.after(100);
     },
 
-    'Create a 3lane w/ the 1st lane containing 3 notes': function (client) {
+    'Create a 3 lane w/ the 1st lane containing 3 notes': function (client) {
         var firstLane = laneNumCounter++,
             secondLane = laneNumCounter++,
             thirdLane = laneNumCounter++;
@@ -146,6 +146,8 @@ module.exports = {
 
         kanban.deleteLane(firstLane)
             .expect.element(kanban.laneSele(firstLane)).to.not.be.present.after(100);
+        kanban.deleteLane(thirdLane)
+            .expect.element(kanban.laneSele(thirdLane)).to.not.be.present.after(100);
         kanban.deleteLane(secondLane)
             .expect.element(kanban.laneSele(secondLane)).to.not.be.present.after(100);
     },
