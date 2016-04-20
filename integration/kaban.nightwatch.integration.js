@@ -14,13 +14,13 @@ module.exports = {
 
     'Add 1st Lane': function () {
         kanban.addLane().waitForElementVisible(kanban.laneSele(0), 100);
-        kanban.expect.element(kanban.deleteLaneBtnSele(0)).to.be.present;
-        kanban.expect.element(kanban.addNoteBtnSele(0)).to.be.visible;
+        kanban.expect.element(kanban.deleteLaneBtnSele(0)).to.be.present.before(100);
+        kanban.expect.element(kanban.addNoteBtnSele(0)).to.be.visible.before(100);
         kanban.expect.element(kanban.laneNameSele(0))
             .to.be.visible
             .and.text.to.equal('New lane');
 
-        kanban.expect.element(kanban.notesSele(0)).to.be.visible;
+        kanban.expect.element(kanban.notesSele(0)).to.be.visible.before(100);
 
         kanban.laneNotes(0, function (notes) {
             expect(notes.value.length).to.equal(0);
@@ -74,7 +74,6 @@ module.exports = {
         kanban.laneNotes(2, function (notes) {
             expect(notes.value.length).to.equal(3);
         });
-
     },
 
     'Delete 3 Notes to 3nd Lane': function () {
@@ -117,7 +116,6 @@ module.exports = {
         kanban.laneNotes(4, function (notes) {
             expect(notes.value.length).to.equal(0);
         });
-
     },
 
     'Delete 4th & 5th Lanes': function () {
