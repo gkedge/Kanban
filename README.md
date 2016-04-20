@@ -103,9 +103,14 @@ Use [data-selenium-id](http://webdesign.tutsplus.com/tutorials/all-you-need-to-k
 
 <sup>v</sup> - video
 
+#### Nightwatch
+
+[API](http://nightwatchjs.org/api)
+
 | Selenium Test Package | Reason                                                                                      |
 |:----------------------|:--------------------------------------------------------------------------------------------|
 | nightwatch            | [End-to-End tests in Node.js](http://nightwatchjs.org/) that run against a Selenium server. |
+| nightwatch-autorun    | Automatically installs Selenium (if necessary) and runs End-to-End tests with Nightwatch.  |
 
 
 ### Misc Testing

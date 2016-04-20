@@ -8,17 +8,14 @@
 
 
   "selenium": {
-    "start_process": false,
+    "start_process": true,
     "server_path": "lib/selenium-server-standalone-2.53.0.jar",
-    "log_path": "integration/log",
-    "cli_args": {
-      "webdriver.firefox.binary" : "C:/Users/gkedge/AppData/Local/Mozilla Firefox/firefox.exe"
-    }
+    "log_path": "integration/log"
   },
 
   "test_settings": {
     "default": {
-      "launch_url": "http://gkedge.github.io/Kanban/",
+      "launch_url": "http://localhost:8888/",
       "silent": true,
       "screenshots": {
         "enabled": false,
@@ -28,7 +25,17 @@
         "browserName": "firefox",
         "javascriptEnabled": true,
         "acceptSslCerts": true
+      },
+      "__commentOut: desiredCapabilities": {
+        "browserName": "firefox",
+        "platform":"VISTA",
+        "version":"27",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true,
+        "api_key": "api_key",
+        "api_secret": "api_secret"
       }
+      
     }
   }
 }

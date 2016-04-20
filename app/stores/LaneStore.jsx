@@ -7,6 +7,7 @@ import update from 'react-addons-update';
 
 class LaneStore {
     static displayName = 'KanbanLaneStore';
+    static lastLaneNumber = 0;
 
     constructor() {
         this.bindActions(LaneActions);
@@ -17,6 +18,7 @@ class LaneStore {
     create(lane) {
         const lanes = this.lanes;
         lane.id = uuid.v4();
+        lane.num = LaneStore.lastLaneNumber++;
         lane.noteIds = lane.noteIds || [];
         this.setState({
             lanes: lanes.concat(lane)
