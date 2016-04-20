@@ -33,7 +33,7 @@ export default class Lane extends React.Component {
         const {connectDropTarget, lane, ...props} = this.props;
 
         return connectDropTarget(
-            <div {...props}>
+            <div onDragOver={this.allowDrop} onDrop={this.allowDrop} {...props}>
                 <div className="lane-header" onClick={this.activateLaneEdit}>
                     <div className="lane-add-note">
                         <button onClick={this.addNote}>+</button>
