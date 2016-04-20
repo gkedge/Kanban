@@ -8,17 +8,13 @@ var kanbanCommands = {
     },
 
     deleteLane: function (laneNum) {
-        // By starting at the top of the page, and them
-        // moving to the button, we can be sure that
-        // the delete button will become visible due to
-        // the mouse hoovering over it. If the mouse is
-        // already over it, it may not become visible on
-        // a move to be selectable. A jiggle will do the
-        // trick.
+        // By starting at the top of the page, and them moving to the delete lane button,
+        // we can be sure that the delete button will become visible due to the mouse hoovering
+        // over it. the mouse is already over it, the button will not become visible on a direct
+        // move. A jiggle will do the trick.
         return this.moveToElement('@page', 0, 0)
             .moveToElement(this.deleteLaneBtnSele(laneNum), 2, 2)
-            .click(this.deleteLaneBtnSele(laneNum))
-            ;
+            .click(this.deleteLaneBtnSele(laneNum));
     },
 
     deleteLNote: function (laneNum, noteNum) {
@@ -37,7 +33,7 @@ var kanbanCommands = {
     deleteNoteBtnSele: function (laneNum, noteNum) {
         return this.noteSele(laneNum, noteNum) + ' button.delete';
     },
-    
+
     addNoteBtnSele: function (laneNum) {
         return this.laneSele(laneNum) + ' div.lane-add-note button';
     },
@@ -46,7 +42,18 @@ var kanbanCommands = {
         return this.laneSele(laneNum) + ' div.lane-name span';
     },
 
-    notesSele: function (laneNum) {
+    laneNameEditSele: function (laneNum) {
+        return this.laneSele(laneNum) + ' div.lane-name input';
+    },
+
+    setLaneValue: function (client, laneNum, text) {
+        this.click(this.laneNameSele(laneNum));
+        return this.setValue(this.laneNameEditSele(laneNum), [
+            client.Keys.COMMAND, "a", client.Keys.COMMAND,
+            text, client.Keys.ENTER]);
+    },
+    
+    notesSele   : function (laneNum) {
         return this.laneSele(laneNum) + ' ul.notes';
     },
 
@@ -60,7 +67,18 @@ var kanbanCommands = {
         return this.laneSele(laneNum) + ' ul.notes li.note:nth-of-type(' + noteNum + ') span.value';
     },
 
-    laneNotes: function (laneNum, cb) {
+    noteEditSele: function (laneNum, noteNum) {
+        noteNum ++;
+        return this.laneSele(laneNum) + ' ul.notes li.note:nth-of-type(' + noteNum + ') input';
+    },
+
+    setNoteValue: function (client, laneNum, noteNum, text) {
+        this.click(this.noteValueSele(laneNum, noteNum));
+        return this.setValue(this.noteEditSele(laneNum, noteNum), [
+            client.Keys.COMMAND, "a", client.Keys.COMMAND,
+            text, client.Keys.ENTER]);
+    },
+    laneNotes   : function (laneNum, cb) {
         this.api.elements('css selector', this.notesSele(laneNum) + ' li.note', cb);
     }
 };
