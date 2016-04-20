@@ -137,7 +137,7 @@ module.exports = {
             .to.not.be.present.after(100);
     },
 
-    'DnD between lanes': '@pending' + function (client) {
+    'DnD between lanes': function (client) {
         var firstLane  = laneNumCounter++,
             secondLane = laneNumCounter++,
             thirdLane  = laneNumCounter++;
@@ -149,12 +149,13 @@ module.exports = {
         kanban.setNoteValue(client, firstLane, 1, 'Leash Dog');
         kanban.setNoteValue(client, firstLane, 2, 'Walk Dog');
 
-        client.moveToElement(kanban.noteSele(firstLane, 0), 0, 0);
+        client.moveToElement(kanban.noteSele(firstLane, 0), 1, 1);
         client.mouseButtonDown(0);
         // client.pause(1000);
         // client.mouseButtonUp();
 
-        client.moveToElement(kanban.laneSele(secondLane), 0, 0);
+        client.moveToElement(kanban.laneSele(secondLane), 1, 1);
+        client.pause(1000);
         // client.mouseButtonDown();
         // client.pause(2000);
         client.mouseButtonUp(0);

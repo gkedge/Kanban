@@ -1,5 +1,5 @@
 var kanbanCommands = {
-
+    
     // Lane selectors
     addLane: function () {
         return this.click('@addLaneBtn');
@@ -44,13 +44,13 @@ var kanbanCommands = {
             client.Keys.COMMAND, "a", client.Keys.COMMAND,
             text, client.Keys.ENTER]);
     },
-
+    
     // Notes within lane selectors
     notesSele: function (laneNum) {
         return this.laneSele(laneNum) + ' ul.notes';
     },
 
-    laneNotes: function (laneNum, cb) {
+    laneNotes   : function (laneNum, cb) {
         this.api.elements('css selector', this.notesSele(laneNum) + ' li.note', cb);
     },
 
@@ -79,7 +79,7 @@ var kanbanCommands = {
     },
 
     noteSele: function (laneNum, noteNum) {
-        noteNum++;
+        noteNum ++;
         return this.laneSele(laneNum) + ' ul.notes li.note:nth-of-type(' + noteNum + ')';
     },
 
