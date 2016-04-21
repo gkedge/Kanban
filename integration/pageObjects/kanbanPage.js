@@ -41,7 +41,7 @@ var kanbanCommands = {
     setLaneValue: function (client, laneNum, text) {
         this.click(this.laneNameSele(laneNum));
         return this.setValue(this.laneNameEditSele(laneNum), [
-            client.Keys.COMMAND, "a", client.Keys.COMMAND,
+            client.Keys.CONTROL, "a", client.Keys.CONTROL,
             text, client.Keys.ENTER]);
     },
     
@@ -94,7 +94,7 @@ var kanbanCommands = {
     setNoteValue: function (client, laneNum, noteNum, text) {
         this.click(this.noteValueSele(laneNum, noteNum));
         return this.setValue(this.noteEditSele(laneNum, noteNum), [
-            client.Keys.COMMAND, "a", client.Keys.COMMAND,
+            client.Keys.CONTROL, "a", client.Keys.CONTROL,
             text, client.Keys.ENTER]);
     }
 };
