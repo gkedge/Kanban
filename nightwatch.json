@@ -7,25 +7,41 @@
   "globals_path": "",
 
 
-  "selenium": {
+  "__commentOut: selenium": {
     "start_process": true,
     "server_path": "lib/selenium-server-standalone-2.53.0.jar",
     "log_path": "integration/log"
   },
 
+  "__commentOut: selenium": {
+    "start_process": false,
+    "cli_args" : {
+      "webdriver.chrome.driver" : "/Users/greg.kedge/bin/chromedriver"
+    },
+    "log_path": "integration/log"
+  },
+
   "test_settings": {
     "default": {
+      "selenium_host": "127.0.0.1",
+      "selenium_port": "9515", 
       "launch_url": "http://localhost:8888/",
+      
       "silent": true,
+      "firefox_profile": false,
       "screenshots": {
         "enabled": false,
         "path": ""
       },
       "desiredCapabilities": {
-        "browserName": "firefox",
+        "browserName": "chrome",
         "javascriptEnabled": true,
-        "acceptSslCerts": true
+        "acceptSslCerts": true,
+        "__commentOut: chromeOptions" : {
+              "args" : ["start-fullscreen"]
+            }
       },
+      
       "__commentOut: desiredCapabilities": {
         "browserName": "firefox",
         "platform":"VISTA",

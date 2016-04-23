@@ -1,5 +1,5 @@
 var kanbanCommands = {
-    
+
     // Lane selectors
     addLane: function () {
         return this.click('@addLaneBtn');
@@ -39,18 +39,19 @@ var kanbanCommands = {
     },
 
     setLaneValue: function (client, laneNum, text) {
-        this.click(this.laneNameSele(laneNum));
-        return this.setValue(this.laneNameEditSele(laneNum), [
-            client.Keys.COMMAND, "a", client.Keys.COMMAND,
-            text, client.Keys.ENTER]);
+        
+        return this.click(this.laneNameSele(laneNum))
+            .clearValue(this.laneNameEditSele(laneNum))
+            .setValue(this.laneNameEditSele(laneNum),
+                [text, client.Keys.ENTER]);
     },
-    
+
     // Notes within lane selectors
     notesSele: function (laneNum) {
         return this.laneSele(laneNum) + ' ul.notes';
     },
 
-    laneNotes   : function (laneNum, cb) {
+    laneNotes: function (laneNum, cb) {
         this.api.elements('css selector', this.notesSele(laneNum) + ' li.note', cb);
     },
 
@@ -79,7 +80,7 @@ var kanbanCommands = {
     },
 
     noteSele: function (laneNum, noteNum) {
-        noteNum ++;
+        noteNum++;
         return this.laneSele(laneNum) + ' ul.notes li.note:nth-of-type(' + noteNum + ')';
     },
 
@@ -92,10 +93,10 @@ var kanbanCommands = {
     },
 
     setNoteValue: function (client, laneNum, noteNum, text) {
-        this.click(this.noteValueSele(laneNum, noteNum));
-        return this.setValue(this.noteEditSele(laneNum, noteNum), [
-            client.Keys.COMMAND, "a", client.Keys.COMMAND,
-            text, client.Keys.ENTER]);
+        return this.click(this.noteValueSele(laneNum, noteNum))
+            .clearValue(this.noteEditSele(laneNum, noteNum))
+            .setValue(this.noteEditSele(laneNum, noteNum),
+                [text, client.Keys.ENTER]);
     }
 };
 

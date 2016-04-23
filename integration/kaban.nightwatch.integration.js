@@ -13,7 +13,7 @@ module.exports = {
         kanban.assert.title('Kanban app');
     },
 
-    'Add 1st Lane and remove': function () {
+    'Add 1st Lane and remove': function (client) {
         var laneNum = laneNumCounter++;
         kanban.addLane().expect.element(kanban.laneSele(laneNum)).to.be.visible.before(100);
         kanban.expect.element(kanban.deleteLaneBtnSele(laneNum)).to.be.present.before(100);
@@ -32,19 +32,20 @@ module.exports = {
             .expect.element(kanban.laneSele(laneNum)).to.not.be.present.after(100);
     },
 
-    'Add 1st Note to 1st Lane then remove note and lane': function () {
+    'Add 1st Note to 1st Lane then remove note and lane': function (client) {
         var laneNum = laneNumCounter++;
         kanban.addLane().expect.element(kanban.laneSele(laneNum))
             .to.be.present.before(100);
         kanban.addNote(laneNum).expect.element(kanban.noteSele(laneNum, 0))
             .to.be.present.before(100);
-
+        // client.pause(5000);
+        
         kanban.laneNotes(laneNum, function (notes) {
             expect(notes.value.length).to.equal(1);
         });
 
         kanban.expect.element(kanban.noteValueSele(laneNum, 0))
-            .to.be.visible
+            .to.be.visible.after(100)
             .and.text.to.equal('New task');
 
         kanban.deleteLNote(laneNum, 0)

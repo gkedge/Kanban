@@ -16,37 +16,65 @@ NPM
 WebPack
 -------
 
-| Dev Package                                 | Reason 
-|:--------------------------------------------|:----------------------------------------------------------------------------------------|
-| npm-install-webpack-plugin                  | Detects new 'require' addition in code and automatically installs & saves (npm) package.
-| html-webpack-plugin & html-webpack-template | Creates new index.html on each build updating JS script inclusions.
-| clean-webpack-plugin                        | Purge 'build' directory prior to each build.
-| jscs-loader<sup>x</sup>                     | Runs your source through the [JSCS style checker](http://jscs.info/).
-| css-loader                                  | css loader module for webpack.
-| less-loader                                 | less loader module for webpack
-| sass-loader                                 | sass loader module for webpack
-| node-sass                                   | provides binding for Node.js to LibSass, the C version of the popular stylesheet preprocessor, Sass.
-| extract-text-webpack-plugin | Extract latent styling into CSS/LESS/SASS files; avoid the [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) problem. |
+[Debug webpack in WebStorm, IDEA](https://blog.jetbrains.com/webstorm/2015/09/debugging-webpack-applications-in-webstorm/)
+
+| Dev Package                                 | Reason                                                                                                                              |
+|:--------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------|
+| npm-install-webpack-plugin                  | Detects new 'require' addition in code and automatically installs & saves (npm) package.                                            |
+| html-webpack-plugin & html-webpack-template | Creates new index.html on each build updating JS script inclusions.                                                                 |
+| clean-webpack-plugin                        | Purge 'build' directory prior to each build.                                                                                        |
+| jscs-loader[^1]                             | Runs your source through the [JSCS style checker](http://jscs.info/).                                                               |
+| css-loader                                  | css loader module for webpack.                                                                                                      |
+| less-loader                                 | less loader module for webpack                                                                                                      |
+| sass-loader                                 | sass loader module for webpack                                                                                                      |
+| node-sass                                   | provides binding for Node.js to LibSass, the C version of the popular stylesheet preprocessor, Sass.                                |
+| extract-text-webpack-plugin                 | Extract latent styling into CSS/LESS/SASS files; avoid the [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) problem. |
 
 To run stats:
 > ```% npm run stats```
 
 A ```stats.json``` will have been created that can be uploaded to analyze [here](http://webpack.github.io/analyse/#home) or [here](http://chrisbateman.github.io/webpack-visualizer/)
 
-| App Package                   | Reason                                                                                     |
-|:------------------------------|:-------------------------------------------------------------------------------------------|
-| autobind-decorator            | Provides @autobind to bind 'this' to the annotated method.                                 |
-| deep-freeze-node<sup>x</sup>  | Make an entire data structure immutable.                                                   |
-| react-dnd                     | [Drag 'n Drop for React](https://gaearon.github.io/react-dnd/)                             |
-| react-input-field<sup>x</sup> | carefully crafted [input field for React](https://www.npmjs.com/package/react-input-field) |
-| react-datagrid<sup>x</sup>    | carefully crafted [DataGrid for React](http://zippyui.com/react-datagrid/#/)               |
-| react-combo<sup>x</sup>       | carefully crafted [DropDown for React](https://github.com/zippyui/react-combo)             |
+| App Package            | Reason                                                                                     |
+|:-----------------------|:-------------------------------------------------------------------------------------------|
+| autobind-decorator     | Provides @autobind to bind 'this' to the annotated method.                                 |
+| deep-freeze-node[^1]   | Make an entire data structure immutable.                                                   |
+| react-dnd              | [Drag 'n Drop for React](https://gaearon.github.io/react-dnd/)                             |
+| react-input-field[^1]  | carefully crafted [input field for React](https://www.npmjs.com/package/react-input-field) |
+| react-datagrid[^1]     | carefully crafted [DataGrid for React](http://zippyui.com/react-datagrid/#/)               |
+| react-combo[^1]        | carefully crafted [DropDown for React](https://github.com/zippyui/react-combo)             |
 
-<sup>x</sup> - not currently used.
+testAllTheThings()
+------------------
+Tests help understand code written a month ago&hellip; 
 
-Testing
--------
-![](https://s3.amazonaws.com/codementor_content/2015-Dec-week1/lost.jpg)
+![](http://tomarra.azurewebsites.net/wp-content/uploads/2011/09/Test_All_The_Things.png) ![](https://s3.amazonaws.com/codementor_content/2015-Dec-week1/lost.jpg)
+
+The testing pyramid indicates that a project should invest an overwhelming majority of effort into the Unit Testing and the Integration (service) testing with a focus on them running very fast.  An a smaller effort is extended into the 'Acceptance' level of End-to-End testing.  Meaning, acceptance is probably limited to a 'greased path' test of a story that may be integrated into a suite of other page-related tests or other flow-related test that incorporate tests that start on a given page.  Even if acceptance tests are limited to 'greased path' scenarios, it is seems acceptance testing could easily get to be a significant investment over time even with all the tricks to avoid the inherent brittleness of automated acceptance testing... We shall watch and learn...
+
+With a ReactJS design, I am expecting that a lot of bugs are going to be avoided that require EtoE web drivers to find and protect against regression. In addition, I expect that ReactJS it will lend itself to UT patterns that are more straightforward even for testing error paths (not 'greased path).
+ 
+So, lets concentrate on ReactJS UT testing alternatives first prior to getting to the numerous 'Acceptance', web driving alternatives.
+ 
+### React UT'ing
+    
+#### React Component UT'ing
+
+[Enzyme](https://github.com/airbnb/enzyme)[^1] looks like the way to attack testing components. Enzyme is a JavaScript Testing utility for React that makes it easier to assert, manipulate, and traverse your React Components' output.
+ 
+ Approach options (old). [Oh, the options!](http://reactkungfu.com/2015/07/approaches-to-testing-react-components-an-overview/)
+
+If using React's shallow rendering feature for UT'ing components, it is still probably best to look to ```enzyme```, but might be [skin-deep](https://github.com/believer/react-testing-skin-deep) a package to ease dealing with shallow. Posts on using ```skin-deep```:
+
+- [Unit testing React components without a DOM](https://simonsmith.io/unit-testing-react-components-without-a-dom/)
+- [React testing with shallow rendering and skin-deep](http://willcodefor.beer/react-testing-with-shallow-rendering-and-skin-deep/)
+
+Enzyme supports integration with testing frameworks:
+
+- [Enzyme w/ Mocha](https://github.com/airbnb/enzyme/blob/master/docs/guides/mocha.md) - Enzyme was originally designed to work with Mocha.
+- [Enzyme with Karma](https://github.com/airbnb/enzyme/blob/master/docs/guides/karma.md)
+
+Enzyme [integration into a Webpack build](https://github.com/airbnb/enzyme/blob/master/docs/guides/webpack.md).
 
 Using [Karma with WebPack](http://mike-ward.net/2015/09/07/tips-on-setting-up-karma-testing-with-webpack/)
 
@@ -54,43 +82,126 @@ Using [Karma with WebPack](http://mike-ward.net/2015/09/07/tips-on-setting-up-ka
 
 [Karma vs Mocha/JSDOM](https://medium.com/podio-engineering-blog/from-karma-to-mocha-with-a-taste-of-jsdom-c9c703a06b21#.87qy2mwxa)  
 
-[Mocha Testing Redux](https://www.codementor.io/reactjs/tutorial/redux-unit-test-mocha-mocking)
+#### Testing Stores
 
-| Test Package                         | Reason                                                                                            |
-|:-------------------------------------|:--------------------------------------------------------------------------------------------------|
-| analyze-es6-modules<sup>x</sup>      | [static analysis of ES6 modules ](https://www.npmjs.com/package/analyze-es6-modules) determining if imports and exports align |
-| eslint                               | [Pluggable static code analysis (linting) utility for JavaScript.](http://eslint.org/)            |
-| eslint-plugin-react                  | React specific linting rules for ESLint.                                                          |
-| babel-eslint                         | ESLint using Babel as the parser.                                                                 |
-| isparta-instrumenter-loader          | Instrument Babel code using IsParta; leverages [Istanbul](https://github.com/gotwarlost/istanbul) |
-| react-addons-test-utils              | Tools to assist testing React.                                                                    |
-| react-dnd-test-backend               | [Test React Dnd](http://gaearon.github.io/react-dnd/docs-test-backend.html).                      |
-| legit-tests<sup>x</sup>              | Replacement for ```react-addons-test-utils```                                                     |
-| redux-mock-store<sup>x</sup>         | [Test Redux stores](https://github.com/reactjs/redux/blob/master/docs/recipes/WritingTests.md).   |
-| karma                                | [Karama](http://karma-runner.github.io/0.13/index.html)                                           |
-| karma-coverage                       | Karma adapter to run Istanbul code coverage.                                                      |
-| karma-babel-preprocessor             | Preprocessor to compile ES6 on the fly with Babel.                                                |
-| karma-mocha                          | Karma adapter to leverage Mocha. *See 'mocha' below&hellip;*                                      |
-| karma-chai                           | Karma adapter to leverage Chai. *See 'chai' below&hellip;*                                        |
-| karma-phantomjs-launcher             | Karma PhantomJS launcher.                                                                         |
-| karma-firefox-launcher               | Karma Firefox launcher.                                                                           |
-| karma-chrome-launcher                | Karma Chrome launcher.                                                                            |
-| karma-ie-launcher                    | Karma IE launcher.                                                                                |
-| karma-sourcemap-loader               | Allows Karma to load source maps from transpiled Babel code.                                      |
-| karma-spec-reporter                  | Test reporter, that prints detailed results to console.                                           |
-| karma-webpack                        | The link between the two.                                                                         |
-| karma-webpack-with-fast-source-maps<sup>x</sup> | Fork of ```karma-webpack```. *One or the other!*                                       |
-| enzyme<sup>x</sup>                   | Testing utility for React that makes it easier to assert, manipulate, and traverse your React Components output. |
-| chai-enzyme<sup>x</sup>              | Chai assertions for ```enzyme```                                                                  |
-| mocha                                | A feature-rich [JavaScript test framework](https://mochajs.org/) that simplifies async testing.   |
-| codeceptjs<sup>x</sup>               | With [CodeceptJS](http://codecept.io/), acceptance tests from user's perspective can be written.  |
-| chai                                 | A BDD / TDD [assertion library](http://chaijs.com/).                                              |
-| react-unit<sup>x</sup>               | Obviates the need for PhantomJS.                                                                  |
-| phantomjs-prebuilt                   | Installer for PhantomJS, headless webkit with JS API.                                             |
-| phantomjs-polyfill                   | Polyfill for ```function.prototype.bind``` missing from PhantomJS.                                |
+[Mocha Testing Redux](https://www.codementor.io/reactjs/tutorial/redux-unit-test-mocha-mocking)[^1]
 
-### [Selenium](http://docs.seleniumhq.org/)
-[Mastering Selenium Testing Tools](http://my.safaribooksonline.com/video/software-engineering-and-development/software-testing/9781783985487)<sup>v</sup>  
+### Test Package List
+
+| Test Package                            | Reason                                                                                                                        |
+|:----------------------------------------|:------------------------------------------------------------------------------------------------------------------------------|
+| analyze-es6-modules[^1]                 | [static analysis of ES6 modules ](https://www.npmjs.com/package/analyze-es6-modules) determining if imports and exports align |
+| eslint                                  | [Pluggable static code analysis (linting) utility for JavaScript.](http://eslint.org/)                                        |
+| eslint-plugin-react                     | React specific linting rules for ESLint.                                                                                      |
+| babel-eslint                            | ESLint using Babel as the parser.                                                                                             |
+| isparta-instrumenter-loader             | Instrument Babel code using IsParta; leverages [Istanbul](https://github.com/gotwarlost/istanbul)                             |
+| react-addons-test-utils                 | Tools to assist testing React.                                                                                                |
+| react-dnd-test-backend                  | [Test React Dnd](http://gaearon.github.io/react-dnd/docs-test-backend.html).                                                  |
+| legit-tests[^1]                         | Replacement for ```react-addons-test-utils```                                                                                 |
+| redux-mock-store[^1]                    | [Test Redux stores](https://github.com/reactjs/redux/blob/master/docs/recipes/WritingTests.md).                               |
+| karma                                   | [Karama](http://karma-runner.github.io/0.13/index.html)                                                                       |
+| karma-coverage                          | Karma adapter to run Istanbul code coverage.                                                                                  |
+| karma-babel-preprocessor                | Preprocessor to compile ES6 on the fly with Babel.                                                                            |
+| karma-mocha                             | Karma adapter to leverage Mocha. *See 'mocha' below&hellip;*                                                                  |
+| karma-chai                              | Karma adapter to leverage Chai. *See 'chai' below&hellip;*                                                                    |
+| karma-phantomjs-launcher                | Karma PhantomJS launcher.                                                                                                     |
+| karma-firefox-launcher                  | Karma Firefox launcher.                                                                                                       |
+| karma-chrome-launcher                   | Karma Chrome launcher.                                                                                                        |
+| karma-ie-launcher                       | Karma IE launcher.                                                                                                            |
+| karma-sourcemap-loader                  | Allows Karma to load source maps from transpiled Babel code.                                                                  |
+| karma-spec-reporter                     | Test reporter, that prints detailed results to console.                                                                       |
+| karma-webpack                           | The link between the two.                                                                                                     |
+| karma-webpack-with-fast-source-maps[^1] | Fork of ```karma-webpack```. *One or the other!*                                                                              |
+| enzyme[^1]                              | Testing utility for React that makes it easier to assert, manipulate, and traverse your React Components output.              |
+| chai-enzyme[^1]                         | Chai assertions for ```enzyme```                                                                                              |
+| mocha                                   | A feature-rich [JavaScript test framework](https://mochajs.org/) that simplifies async testing.                               |
+| codeceptjs[^1]                          | With [CodeceptJS](http://codecept.io/), acceptance tests from user's perspective can be written.                              |
+| chai                                    | A BDD / TDD [assertion library](http://chaijs.com/).                                                                          |
+| react-unit[^1]                          | Obviates the need for PhantomJS.                                                                                              |
+| phantomjs-prebuilt                      | Installer for PhantomJS, headless webkit with JS API.                                                                         |
+| phantomjs-polyfill                      | Polyfill for ```function.prototype.bind``` missing from PhantomJS.                                                            |
+
+### End-to-End Acceptance Testing
+
+#### [SeleniumHQ](http://docs.seleniumhq.org/)
+Every solution considered for this project at this point leverages Selenium **'servers'**.  The reason for quoting 'servers' is running a Selenium server, though easy, can be a tad confusing. A central truism for all Selenium 'servers' is that they all provide a HTTP ReST API that leverages JSON-formated data for all payloads and responses. That protocol used to communicate between a test clients and Selenium Server has been standaredized as the [W3C WebDriver Standard](https://w3c.github.io/webdriver/webdriver-spec.htmlJSON) (formerly known as, the [JSON Wire Protocol](https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol)).
+ 
+##### The Java Selenium Standalone Server
+
+Selenium supplies a Java server that can drive Firefox (only!). However, it's use (and it's associated Java install) is only absolutely necessary on remote server hardware (relative to the test client)!  If you have Java installed locally, you **can** use to to drive Firefox without further plugin dependencies.
+
+##### Dedicated Binary Browser Servers
+ 
+For each browser, there is a binary (native executable available for Linux, Windows, & OS X) that can both drive their related browser **and** act as a browser-dedicated, local Selenium server. As an example, Google Chrome maintains ```ChromeDriver``` to drive Chrome. It can be run locally to serve test clients running on the same hardware/OS.  Even though Firefox is supported by the Java Selenium Standalone Server, Mozilla maintains a Firefox WebDriver called Marionette.
+
+If you are running a server remotely (the only way to test different browsers concurrently), that remote server must have the Java Selenium Standalone Server installed (along with Java itself) in addition to the binary driver dedicated to the browser type to be tested on that server. The lone exception would be Firefox where you would have a choice of installing Marionette or reallying upon the Java Selenium Standalone Server alone.
+
+Though Selenium servers support all popular browsers (&hellip; and some *unpopular*), a single running Selenium server can only interact with a single version of a single browser. SeleniumGrid and other like-efforts are available to test multiple browsers in parallel upon kicking off a test.
+
+*Supported popular browsers*
+
+| Vendor            | Maintainer | Versions       |
+|:------------------|:-----------|:---------------|
+| Chromium          | Google     | All Versions   |
+| Firefox           | Selenium   | 4 and newer    |
+| Firefox           | Mozilla    | ?              |
+| Internet Explorer | Selenium   | 6 and newer    |
+| Opera             | Opera      | 10.5 and newer |
+| Safari            | Selenium   | 5.1 and newer  |
+
+*Supported specialized browsers; browsers used in development environments.*
+
+| Driver Name     | Purpose                                        | Maintainer          |
+|:----------------|:-----------------------------------------------|:--------------------|
+| PhantomJSDriver | Headless PhantomJS browser backed by QtWebKit. | GhostDriver project |
+| HtmlUnitDriver  | Headless browser emulator backed by Rhino.     | Selenium project    |
+
+
+##### SeleniumHQ IDE
+SeleniumHQ provides a specialized IDE that records a user's activity to capture a scripts that can run within its client.  I am avoiding this tact and focusing on manually created tests leveraging PageObjects to ensure a less-brittle test suite. [Please read this for why.](http://code.tutsplus.com/articles/maintainable-automated-ui-tests--net-35089).
+
+#### Selenium Clients
+
+Client access to a Selenium server and it's bound binary browser-specific plugin can be written in any programming language. This is possible given that client communication to a Selenium server is based on a standardized ReST API using JSON formatted data in it's request/response payloads.
+
+The standard: [W3C WebDriver Standard](https://w3c.github.io/webdriver/webdriver-spec.htmlJSON) (formerly, the [JSON Wire Protocol](https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol)).
+ 
+##### Client libraries Implementing W3C WebDriver
+
+SeleniumHQ provides language-specific libraries (gems, packages, &hellip;) that implement the client-side W3C WebDriver protocol. They can be used in conjunction with 'enhanced', popular test interface (think Mocha, Cucumber, etc.) that provides a complete solution for your Acceptance testing.
+
+*SeleniumHQ Language-specific Client Binding Libraries (gems, packages, &hellip;)*
+
+| Language          |                                                                                            |
+|:------------------|:-------------------------------------------------------------------------------------------|
+| Java              | [Download](http://selenium-release.storage.googleapis.com/2.53/selenium-java-2.53.0.zip)   |
+| C#                | [Download](http://selenium-release.storage.googleapis.com/2.53/selenium-dotnet-2.53.0.zip) |
+| Ruby              | [Download](http://rubygems.org/gems/selenium-webdriver)                                    |
+| Python            | [Download](http://pypi.python.org/pypi/selenium)                                           |
+| Javascript (Node) | [Download](https://npmjs.org/package/selenium-webdriver)                                   |
+
+While those are the *official* language bindings supported by SeleniumHQ, there are other [3rd Party bindings available](http://www.seleniumhq.org/download/#thirdPartyLanguageBindings). Of these, I am only listing the JavaScript bindings since that is the only ones of interest at the moment:
+
+*3rd Party Client Binding JS Packages*
+
+| JS Package                                                 | Maintained by                                     |
+|:-----------------------------------------------------------|:--------------------------------------------------|
+| [WD.js](https://github.com/admc/wd)                        | Adam Christian                                    |
+| [Yiewd](https://github.com/jlipps/yiewd) (a WD.js wrapper) | Jonathan Lipps                                    |
+| [WebDriver.IO](http://webdriver.io/)                       | Camilo Tapia, Vincent Voyer and Christian Bromann |
+| [Nightwatch](http://nightwatchjs.org/)                     | Andrei Rusu                                       |
+| [LeadFoot](https://www.npmjs.com/package/leadfoot)         | SitePen                                           |
+
+##### JS Complete Client Testing Packages
+
+Having a JS package implementing the WebDriver standard is nice, but it is hardly enough to craft test with.  As mentioned above, those language-specific client binding libs could use a 'nice' test interface to craft your Acceptance tests. The following JavaScript test packages *are* the interfaces with which you will write your test suites:
+
+| Testing Packages                       | Maintained by |
+|:---------------------------------------|:--------------|
+| [Intern](https://theintern.github.io/) | SitePen       |
+|                                        |               |
+
+[Mastering Selenium Testing Tools](http://my.safaribooksonline.com/video/software-engineering-and-development/software-testing/9781783985487)[^2]  
 [Mastering Selenium WebDriver](http://my.safaribooksonline.com/book/web-development/9781784394356) *NOTE: TestNG!*  
 [Selenium Testing Tools Cookbook - Second Edition](http://my.safaribooksonline.com/book/software-engineering-and-development/software-testing/9781784392512) *NOTE: TestNG!*  
 [Selenium Maven Archetype](https://github.com/sebarmeli/Selenium2-Java-QuickStart-Archetype) 
@@ -101,34 +212,29 @@ Using [Karma with WebPack](http://mike-ward.net/2015/09/07/tips-on-setting-up-ka
 Use [data-selenium-id](http://webdesign.tutsplus.com/tutorials/all-you-need-to-know-about-the-html5-data-attribute--webdesign-9642) to hook in Selenium.
 
 
-<sup>v</sup> - video
-
 #### Nightwatch
 
 [API](http://nightwatchjs.org/api)
 
 | Selenium Test Package | Reason                                                                                      |
 |:----------------------|:--------------------------------------------------------------------------------------------|
-| nightwatch            | [End-to-End tests in Node.js](http://nightwatchjs.org/) that run against a Selenium server. |
-| nightwatch-autorun    | Automatically installs Selenium (if necessary) and runs End-to-End tests with Nightwatch.  |
+| nightwatch            | [Acceptance tests in Node.js](http://nightwatchjs.org/) that run against a Selenium server. |
+| nightwatch-autorun    | Automatically installs Selenium (if necessary) and runs Acceptance tests with Nightwatch.  |
 
 
 ### Misc Testing
 
-[RestAssured](https://github.com/jayway/rest-assured/wiki/Usage)<sup>x</sup> 
-
-<sup>x</sup> - not currently used.
+[RestAssured](https://github.com/jayway/rest-assured/wiki/Usage)[^1] 
 
 
 Misc
 ----
 
-| Code Style Package | Reason                                                     |
-|:-------------------|:---------------------------------------------------------- |
-| gh-pages           | Task for publishing files to a gh-pages branch on GitHub. |
-| jscs<sup>x</sup>   | code style linter/formatter for programmatically enforcing your style guide |
+| Code Style Package | Reason                                                                                                                                                                                                                   |
+|:-------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| gh-pages           | Task for publishing files to a gh-pages branch on GitHub.                                                                                                                                                                |
+| jscs[^1]           | Code style linter/formatter for programmatically enforcing your style guide. [[NOTE: 3.0 is **last** version! Combining forces with ESLint.](https://medium.com/@markelog/jscs-end-of-the-line-bc9bf0b3fdb2#.xidxxv6oj)] |
 
-<sup>x</sup> - not currently used.
 
 React
 =====
@@ -146,3 +252,6 @@ React Form Validation
 * Depending on how complex your form is, you may not encounter/need all this.
 [The proposal for the upcoming rewrite of redux-form](https://github.com/erikras/redux-form/issues/726) is an interested read related to form validation in React, as it describes two ways to do lots of different things you you need to do to handle forms (the old API and the new). [react-formal](https://github.com/jquense/react-formal) is also interesting as a schema-based approach to form validation. Even if you're not using form libraries, they're solving the same problems you'll be encountering soon.
 
+ [^1]: Not currently used in project.
+ 
+ [^2]: Video
