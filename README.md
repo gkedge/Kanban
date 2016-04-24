@@ -132,7 +132,7 @@ Every solution considered for this project at this point leverages Selenium **'s
  
 ##### The Java Selenium Standalone Server
 
-Selenium supplies a Java server that can drive Firefox (only!). However, it's use (and it's associated Java install) is only absolutely necessary on remote server hardware (relative to the test client)!  If you have Java installed locally, you **can** use to to drive Firefox without further plugin dependencies.
+Selenium supplies a Java server that can drive Firefox (only!). However, it's use (and it's associated Java install) is absolutely necessary only when running Selenium on remote server hardware (relative to the test client)!  If you have Java installed locally, you **can** use to to drive Firefox without further plugin dependencies.  Please see [this to download the Java Selenium Standalone Server](http://www.seleniumhq.org/download/). *To simplify instructions that follow, put the selenium-server-standalone-2.xx.0.jar into a 'lib' folder in this project.*
 
 ##### Dedicated Binary Browser Servers
  
@@ -162,6 +162,18 @@ Though Selenium servers support all popular browsers (&hellip; and some *unpopul
 | HtmlUnitDriver  | Headless browser emulator backed by Rhino.     | Selenium project    |
 
 
+#### WebDriver Installation
+
+Download one of the Browser WebDrivers from the table above and run. You may wish to put the downloaded WebDriver in your $PATH (no, I'm not showing you how to do that).  If your WebDriver of interest is ChromeDriver and it is in $PATH:
+
+```
+    % chromedriver --url-base=/wd/hub
+      Starting ChromeDriver 2.21.371459 (36d3d07f660ff2bc1bf28a75d1cdabed0983e7c4) on port 9515
+      Only local connections are allowed.
+```
+
+Note the port. Your chosen client will have to know the port your Selenium server is bound.
+
 ##### SeleniumHQ IDE
 SeleniumHQ provides a specialized IDE that records a user's activity to capture a scripts that can run within its client.  I am avoiding this tact and focusing on manually created tests leveraging PageObjects to ensure a less-brittle test suite. [Please read this for why.](http://code.tutsplus.com/articles/maintainable-automated-ui-tests--net-35089).
 
@@ -169,7 +181,7 @@ SeleniumHQ provides a specialized IDE that records a user's activity to capture 
 
 Client access to a Selenium server (and it's bound binary browser-specific plugin) can be written in any programming language. This is possible given that language-agnostic nature of The Protocol.
 
-##### Client libraries Implementing W3C WebDriver
+##### Client W3C WebDrivers
 
 SeleniumHQ provides language-specific libraries (gems, packages, &hellip;) that implement the client-side W3C WebDriver protocol. However, their test API can leave something to be desired compared to 3rd party offerings.
 
@@ -185,7 +197,7 @@ SeleniumHQ provides language-specific libraries (gems, packages, &hellip;) that 
 
 While those are the *official* language bindings supported by SeleniumHQ, there are other [3rd Party bindings available](http://www.seleniumhq.org/download/#thirdPartyLanguageBindings). 3rd party bindings make a name for themselves by compensating for bugs in the servers and/or improving the testing interfaces that they expose to the developer. Of those available, I am only listing the JavaScript bindings. If a JavaScript binding proves worthy to a JS team, then the adoption could be that much more within reach.
 
-*3rd Party Client Binding JS Packages*
+*3rd Party JS Client Packages*
 
 | JS Package                                                 | Maintained by                                     |
 |:-----------------------------------------------------------|:--------------------------------------------------|
@@ -227,7 +239,51 @@ Use [data-selenium-id](http://webdesign.tutsplus.com/tutorials/all-you-need-to-k
 | Selenium Test Package | Reason                                                                                      |
 |:----------------------|:--------------------------------------------------------------------------------------------|
 | nightwatch            | [Acceptance tests in Node.js](http://nightwatchjs.org/) that run against a Selenium server. |
-| nightwatch-autorun    | Automatically installs Selenium (if necessary) and runs Acceptance tests with Nightwatch.  |
+| nightwatch-autorun    | Automatically installs Selenium (if necessary) and runs Acceptance tests with Nightwatch.   |
+
+Nightwatch has a configuration file (nightwatch.json) for which connectivity to the Selenium server is established. Nightwatch can start and stop your Selenuum server, however I have found that Nightwatch can only control a WebDriver's lifetime if the Java Selenium Standalone server is used as a pass-through to the browser-dedicated binary, even if running locally. 
+
+If you want Nightwatch to control the Selenium Server's lifetime:
+
+ - follow instructions above to install the The Java Selenium Standalone Server and
+ - provide the following Selenium configuration to nightwatch.json:
+ 
+```
+ {
+   ...
+   "selenium": {
+     "start_process": true,
+     "server_path": "lib/selenium-server-standalone-2.xx.0.jar",
+     "log_path": "integration/log"
+   },
+   ...
+ }
+```
+
+If you can forgo having Nightwatch control the Selenium Server's lifetime, starting/stopping it manually and you intend to run a WebDriver server on the same hardware as the client:
+
+ - follow the instructions above to download a Dedicated Binary Browser Server for the browser of you choice.
+ - start it on the command line and note the port it is running
+ - remove any "selenium" configuration block in nightwatch.json
+ - augment the default or a different environment within nightwatch.json to tell Nightwatch the port that you chosen server is attached:
+ 
+```
+ {
+   ...
+   "̶s̶e̶l̶e̶n̶i̶u̶m̶"̶:̶ ̶{̶
+     ...
+   }̶,̶
+   ...
+
+  "test_settings": {
+    "default": {
+      "selenium_host": "127.0.0.1",
+      "selenium_port": "9515", 
+   ...
+   }
+ }
+``` 
+
 
 [React Starter Kit using Nightwatch](https://github.com/dqdinh/react-webpack-starter)  
 
