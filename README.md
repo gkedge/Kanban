@@ -55,7 +55,8 @@ testAllTheThings()
 
 ![](http://tomarra.azurewebsites.net/wp-content/uploads/2011/09/Test_All_The_Things.png)
 
-Tests help understand code written a month prior&hellip; 
+Tests help understand code written a month prior&hellip;
+ 
 ![](https://s3.amazonaws.com/codementor_content/2015-Dec-week1/lost.jpg)
 
 The testing pyramid indicates that a project should invest an overwhelming majority of effort into the Unit Testing and the Integration (service) testing with a focus on them running very fast.  A smaller effort is extended into the 'Acceptance' level of End-to-End testing.  Meaning, acceptance is probably limited to a 'greased path' test of a story that may be integrated into a suite of other page-related or other flow-related tests.  Even if acceptance tests are limited to 'greased path' scenarios, they could easily become a significant investment over time. It is a central goal for Acceptance Test to be as easy as possible to both craft and maintain. They can't consume a developer's time at the cost of sprint delivery or more important testing at the UT and integration levels. Let's watch and learn...
