@@ -3,6 +3,12 @@
 Kanban
 ======
 
+This project implements a simple Kanban tool in a browser.  It predominately borrows from the coding work of Juho Vepsäläinen in support of his excellent book *[SurviveJS Webpact and React; from Apprentice to Master](https://leanpub.com/survivejs_webpack_react)*.  Please support his work! He has much more in store to write on JS development; let's kept it going with purchasing that book. He is very good about updating it!
+
+Juho ([@bebraw](https://twitter.com/bebraw?lang=en)) [GitHub Code Repository](https://github.com/survivejs/webpack_react) for *SurviveJS Webpack and React*.
+
+A very active [Gitter Chat](https://gitter.im/survivejs/webpack_react) dedicated to the book. Juho is very supportive on this Gitter Chat!
+
 NPM
 ---
 
@@ -265,7 +271,7 @@ If you can forgo having Nightwatch control the Selenium Server's lifetime, start
  - follow the instructions above to download a Dedicated Binary Browser Server for the browser of you choice.
  - start it on the command line and note the port it is running
  - remove any "selenium" configuration block in nightwatch.json
- - augment the default or a different environment within nightwatch.json to tell Nightwatch the port that you chosen server is attached:
+ - augment the default or a specific environment within nightwatch.json to tell Nightwatch the port that your chosen server is attached:
  
 ```
  {
@@ -284,6 +290,22 @@ If you can forgo having Nightwatch control the Selenium Server's lifetime, start
  }
 ``` 
 
+This project's package.json's "script" section has had the following target added:
+```
+{
+  ... ,
+  "scripts": {
+    ... ,
+    "acceptance-NW": "nightwatch"
+  },
+  ...
+}
+```
+
+Run the Nightwatch acceptance tests:
+```
+% npm run acceptance-NW
+```
 
 [React Starter Kit using Nightwatch](https://github.com/dqdinh/react-webpack-starter)  
 
