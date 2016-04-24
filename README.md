@@ -52,15 +52,19 @@ A ```stats.json``` will have been created that can be uploaded to analyze [here]
 
 testAllTheThings()
 ------------------
-Tests help understand code written a month ago&hellip; 
 
-![](http://tomarra.azurewebsites.net/wp-content/uploads/2011/09/Test_All_The_Things.png) ![](https://s3.amazonaws.com/codementor_content/2015-Dec-week1/lost.jpg)
+![](http://tomarra.azurewebsites.net/wp-content/uploads/2011/09/Test_All_The_Things.png)
+
+Tests help understand code written a month prior&hellip; 
+![](https://s3.amazonaws.com/codementor_content/2015-Dec-week1/lost.jpg)
 
 The testing pyramid indicates that a project should invest an overwhelming majority of effort into the Unit Testing and the Integration (service) testing with a focus on them running very fast.  A smaller effort is extended into the 'Acceptance' level of End-to-End testing.  Meaning, acceptance is probably limited to a 'greased path' test of a story that may be integrated into a suite of other page-related or other flow-related tests.  Even if acceptance tests are limited to 'greased path' scenarios, they could easily become a significant investment over time. It is a central goal for Acceptance Test to be as easy as possible to both craft and maintain. They can't consume a developer's time at the cost of sprint delivery or more important testing at the UT and integration levels. Let's watch and learn...
 
 With a ReactJS design, I am expecting that a lot of bugs are going to be avoided that require EtoE web drivers to find and protect against regression. In addition, I expect that ReactJS it will lend itself to UT patterns that are more straightforward even for testing error paths (not 'greased path).
  
 So, lets concentrate on ReactJS UT testing alternatives first prior to getting to the numerous 'Acceptance', web driving alternatives.
+
+![](http://image.slidesharecdn.com/leveragingqualityv1-141001112804-phpapp01/95/slow-down-to-speed-up-leveraging-quality-to-enable-productivity-and-speed-with-14-638.jpg?cb=1412162989)
  
 ### React UT'ing
     
