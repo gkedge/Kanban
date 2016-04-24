@@ -1,5 +1,3 @@
-[//]: # Markdown Help: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
-
 Kanban
 ======
 
@@ -8,6 +6,8 @@ This project implements a simple Kanban tool in a browser.  It predominately bor
 Juho ([@bebraw](https://twitter.com/bebraw?lang=en)) [GitHub Code Repository](https://github.com/survivejs/webpack_react) for *SurviveJS Webpack and React*.
 
 A very active [Gitter Chat](https://gitter.im/survivejs/webpack_react) dedicated to the book. Juho is very supportive on this Gitter Chat!
+
+My personal additions to his body of work captured within this repository focus on note gathering (below) and exploring further [UT](#react-uting)/[Integration](#integraton-testing)/[Acceptance](#end-to-end-acceptance-testing) testing beyond Juho's introductory work on the testing subject.  
 
 NPM
 ---
@@ -70,7 +70,7 @@ So, lets concentrate on ReactJS UT testing alternatives first prior to getting t
  
  Approach options (old). [Oh, the options!](http://reactkungfu.com/2015/07/approaches-to-testing-react-components-an-overview/)
 
-If using React's shallow rendering feature for UT'ing components, it is still probably best to look to ```enzyme```, but might be [skin-deep](https://github.com/believer/react-testing-skin-deep) a package to ease dealing with shallow. Posts on using ```skin-deep```:
+If using React's shallow rendering feature for UT'ing components, it is still probably best to look to ```enzyme```, but [skin-deep](https://github.com/believer/react-testing-skin-deep) might be a package that eases dealing with shallow. Posts on using ```skin-deep```:
 
 - [Unit testing React components without a DOM](https://simonsmith.io/unit-testing-react-components-without-a-dom/)
 - [React testing with shallow rendering and skin-deep](http://willcodefor.beer/react-testing-with-shallow-rendering-and-skin-deep/)
