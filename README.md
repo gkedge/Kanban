@@ -55,7 +55,7 @@ testAllTheThings()
 
 ![](http://tomarra.azurewebsites.net/wp-content/uploads/2011/09/Test_All_The_Things.png)
 
-Tests help understand code written a month prior&hellip;
+Tests help understand code written a month prior better than code comments ever will&hellip;
  
 ![](https://s3.amazonaws.com/codementor_content/2015-Dec-week1/lost.jpg)
 
