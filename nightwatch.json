@@ -16,8 +16,8 @@
     "start_process": true,
     "server_path": "./lib/selenium-server-standalone-2.53.0.jar",
     "cli_args": {
-      "__windows: webdriver.chrome.driver": "./lib/chromedriver.exe",
-      "webdriver.chrome.driver" : "/Users/greg.kedge/bin/chromedriver"
+      "webdriver.chrome.driver": "./lib/chromedriver.exe",
+      "__osx webdriver.chrome.driver" : "/Users/greg.kedge/bin/chromedriver"
     },
     "log_path": "integration/log"
   },
@@ -37,7 +37,7 @@
         "javascriptEnabled": true,
         "acceptSslCerts": true
       },
-      "desiredCapabilities": {
+      "__commentOut: desiredCapabilities": {
         "browserName": "chrome",
         "platform": "Windows 7",
         "javascriptEnabled": true,
