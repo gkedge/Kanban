@@ -7,17 +7,17 @@
   "custom_assertions_path": "",
   "page_objects_path": "integration/pageObjects",
   "globals_path": "",
-  "selenium": {
+  "__commentOut: selenium": {
     "start_process": true,
     "server_path": "lib/selenium-server-standalone-2.53.0.jar",
     "log_path": "integration/log"
   },
-  "__commentOut: selenium": {
+  "selenium": {
     "start_process": true,
     "server_path": "./lib/selenium-server-standalone-2.53.0.jar",
     "cli_args": {
-      "webdriver.chrome.driver": "./lib/chromedriver.exe",
-      "__mac: webdriver.chrome.driver" : "/Users/greg.kedge/bin/chromedriver"
+      "__windows: webdriver.chrome.driver": "./lib/chromedriver.exe",
+      "webdriver.chrome.driver" : "/Users/greg.kedge/bin/chromedriver"
     },
     "log_path": "integration/log"
   },
@@ -31,20 +31,20 @@
         "enabled": false,
         "path": ""
       },
-      "desiredCapabilities": {
+      "__commentOut: desiredCapabilities": {
         "browserName": "firefox",
         "platform": "Windows 7",
         "javascriptEnabled": true,
         "acceptSslCerts": true
       },
-      "__commentOut: desiredCapabilities": {
+      "desiredCapabilities": {
         "browserName": "chrome",
         "platform": "Windows 7",
         "javascriptEnabled": true,
         "acceptSslCerts": true,
         "chromeOptions": {
           "args": [
-            "start-fullscreen", "disable-web-security"
+            "disable-web-security"
           ]
         }
       }
