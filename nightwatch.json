@@ -1,57 +1,53 @@
 {
-  "src_folders": ["integration"],
+  "src_folders": [
+    "integration"
+  ],
   "output_folder": "integration/reports",
   "custom_commands_path": "",
   "custom_assertions_path": "",
   "page_objects_path": "integration/pageObjects",
   "globals_path": "",
-
-
-  "__commentOut: selenium": {
+  "selenium": {
     "start_process": true,
     "server_path": "lib/selenium-server-standalone-2.53.0.jar",
     "log_path": "integration/log"
   },
-
   "__commentOut: selenium": {
-    "start_process": false,
-    "cli_args" : {
-      "webdriver.chrome.driver" : "/Users/greg.kedge/bin/chromedriver"
+    "start_process": true,
+    "server_path": "./lib/selenium-server-standalone-2.53.0.jar",
+    "cli_args": {
+      "webdriver.chrome.driver": "./lib/chromedriver.exe",
+      "__mac: webdriver.chrome.driver" : "/Users/greg.kedge/bin/chromedriver"
     },
     "log_path": "integration/log"
   },
-
   "test_settings": {
     "default": {
-      "selenium_host": "127.0.0.1",
-      "selenium_port": "9515", 
-      "launch_url": "http://localhost:8888/",
-      
+      "launch_url" : "http://localhost:8888",
+      "selenium_port"  : 4444,
+      "selenium_host"  : "localhost",
       "silent": true,
-      "firefox_profile": false,
       "screenshots": {
         "enabled": false,
         "path": ""
       },
       "desiredCapabilities": {
-        "browserName": "chrome",
-        "javascriptEnabled": true,
-        "acceptSslCerts": true,
-        "__commentOut: chromeOptions" : {
-              "args" : ["start-fullscreen"]
-            }
-      },
-      
-      "__commentOut: desiredCapabilities": {
         "browserName": "firefox",
-        "platform":"VISTA",
-        "version":"27",
+        "platform": "Windows 7",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
+      },
+      "__commentOut: desiredCapabilities": {
+        "browserName": "chrome",
+        "platform": "Windows 7",
         "javascriptEnabled": true,
         "acceptSslCerts": true,
-        "api_key": "api_key",
-        "api_secret": "api_secret"
+        "chromeOptions": {
+          "args": [
+            "start-fullscreen", "disable-web-security"
+          ]
+        }
       }
-      
     }
   }
 }
