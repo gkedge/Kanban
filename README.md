@@ -123,7 +123,9 @@ With a ReactJS design, I am expecting that a lot of bugs are going to be avoided
 So, lets concentrate on ReactJS UT testing alternatives first prior to getting to the numerous 'Acceptance', web driving alternatives.
 
 ![](http://image.slidesharecdn.com/leveragingqualityv1-141001112804-phpapp01/95/slow-down-to-speed-up-leveraging-quality-to-enable-productivity-and-speed-with-14-638.jpg?cb=1412162989)
- 
+
+[Automated Testing Best Practices](https://github.com/xolvio/automated-testing-best-practices#automated-testing-best-practices-by-xolvio)
+
 ### React UT'ing
     
 #### React Component UT'ing
@@ -396,6 +398,14 @@ The following services are currently supported:
 - BrowserStack
 - Sauce Labs
 - TestingBot
+
+#### [Chimp.js](https://github.com/xolvio/chimp#chimpjs-----)
+
+> An awesome developer-centric experience to writing tests with realtime feedback using Mocha or Cucumber.js
+
+#### [Codecept](http://codecept.io/)
+
+> CodeceptJS is based on Mocha and uses WebDriverIO library behind the scene. However, complexity of WebDriver libraries are hidden inside DSL for you to concentrate on test scenarios. That also makes CodeceptJS easy to maintain and read.
 
 Misc
 ----
