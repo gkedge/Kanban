@@ -16,7 +16,7 @@ const PATHS = {
     app: path.join(__dirname, 'app'),
     build: path.join(__dirname, 'build'),
     style: path.join(__dirname, 'app/main.css'),
-    test: path.join(__dirname, 'specs')
+    test: path.join(__dirname, 'specs', 'integration')
 };
 
 process.env.BABEL_ENV = TARGET;
@@ -172,7 +172,7 @@ if (TARGET === 'build' || TARGET === 'stats') {
     });
 }
 
-if (TARGET === 'test' || TARGET === 'tdd') {
+if (TARGET === 'test' || TARGET === 'tdd' || TARGET === 'integration') {
     module.exports = merge(common, {
         devtool: 'inline-source-map',
         stats: {
@@ -187,7 +187,8 @@ if (TARGET === 'test' || TARGET === 'tdd') {
         },
         resolve: {
             alias: {
-                'app': PATHS.app
+                'app': PATHS.app,
+                'test': PATHS.test
             }
         },
         module: {

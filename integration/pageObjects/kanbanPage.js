@@ -1,5 +1,5 @@
 var kanbanCommands = {
-
+    
     // Lane selectors
     addLane: function () {
         return this.click('@addLaneBtn');
