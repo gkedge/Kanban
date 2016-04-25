@@ -41,17 +41,74 @@ To run stats:
 
 A ```stats.json``` will have been created that can be uploaded to analyze [here](http://webpack.github.io/analyse/#home) or [here](http://chrisbateman.github.io/webpack-visualizer/)
 
-| App Package            | Reason                                                                                     |
-|:-----------------------|:-------------------------------------------------------------------------------------------|
-| autobind-decorator     | Provides @autobind to bind 'this' to the annotated method.                                 |
-| deep-freeze-node[^1]   | Make an entire data structure immutable.                                                   |
-| react-dnd              | [Drag 'n Drop for React](https://gaearon.github.io/react-dnd/)                             |
-| react-input-field[^1]  | carefully crafted [input field for React](https://www.npmjs.com/package/react-input-field) |
-| react-datagrid[^1]     | carefully crafted [DataGrid for React](http://zippyui.com/react-datagrid/#/)               |
-| react-combo[^1]        | carefully crafted [DropDown for React](https://github.com/zippyui/react-combo)             |
+| App Package                                                               | Reason                                                                                     |
+|:--------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------|
+| autobind-decorator                                                        | Provides @autobind to bind 'this' to the annotated method.                                 |
+| deep-freeze-node[^1]                                                      | Make an entire data structure immutable.                                                   |
+| [seamless-immutable](https://github.com/rtfeldman/seamless-immutable)[^1] | Immutability that caters to ReactJS state updating.                                        |
+| react-dnd                                                                 | [Drag 'n Drop for React](https://gaearon.github.io/react-dnd/)                             |
+| react-input-field[^1]                                                     | carefully crafted [input field for React](https://www.npmjs.com/package/react-input-field) |
+| react-datagrid[^1]                                                        | carefully crafted [DataGrid for React](http://zippyui.com/react-datagrid/#/)               |
+| react-combo[^1]                                                           | carefully crafted [DropDown for React](https://github.com/zippyui/react-combo)             |
 
-testAllTheThings()
-------------------
+React
+=====
+
+React [Best Practices](https://blog.risingstack.com/react-js-best-practices-for-2016/)
+
+React Form Validation
+---------------------
+
+From Juho:
+
+> JSON Schema shines in certain type of apps; you can even serve the schema from server -> single place for validation rules. Here's a good implementation https://github.com/ismaelga/react-json-editor
+
+> [tcomb-form](https://gcanti.github.io/tcomb-form/) is a schema-based solution.
+
+Notes on validation
+
+* Determine which state you need to represent the form. Input values and error messages are the obvious ones to start with, but you may need others at a minimum, such as checkng whether a field has been interacted with yet.
+* Write a render() method which uses that state.
+* Hook up event handlers which update the state as necessary when form input changes.
+* The fun starts when you realise you need to use the same valiation code at different times. For onChange/onBlur, you need to be able to validate fields and update the related state individually. For onSubmit validation, you need to be able to validate every field.
+* Cross-field validation adds to the fun, as does async validation, debouncing inputs and being able to show soft warnings rather than validation errors. Browsers auto-populating fields just adds cruelty when you thought you were done.
+* Depending on how complex your form is, you may not encounter/need all this.
+[The proposal for the upcoming rewrite of redux-form](https://github.com/erikras/redux-form/issues/726) is an interested read related to form validation in React, as it describes two ways to do lots of different things you you need to do to handle forms (the old API and the new). [react-formal](https://github.com/jquense/react-formal) is also interesting as a schema-based approach to form validation. Even if you're not using form libraries, they're solving the same problems you'll be encountering soon.
+
+[Redux](http://redux.js.org/index.html)
+-----
+
+Juho Vepsäläinen's state solution is [Alt](http://alt.js.org/).  However, my interests lie with Redux.  For the time being, this section is a collection notes on Redux.
+
+[Redux Documentation](http://redux.js.org/docs/introduction/Motivation.html)
+
+Dan Aberamov's [video lessons on Redux](https://egghead.io/series/getting-started-with-redux).
+
+#### With Redux, is fb's [immutable.js](https://facebook.github.io/immutable-js/) necessary?
+
+Blog Posts that support augmenting Redux's immutability with immutable.js or, better yet, [seamless-immutable.js](http://seemless-immutable.js/):
+
+> Q: Is it really necessary to use Immutable.js? According to official documentation reducer function in Redux should always emit a new state object using Object.assign(), so why is there need for such a huge library?
+    
+> A: It is not necessary to use Immutable.js, but then you have to be really careful and know exactly how you calculate and return reducer state. Not to mention it looks unreadable and hard to maintain with all pre/post slicing of the arrays --> http://redux.js.org/docs/basic... and these are just simple examples. Also since ImmutableJS has versatile API, in most cases it removes the need for helper libraries like lodash.
+
+- [Full-Stack Redux Tutorial](http://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html)
+- [React, Redux and Immutable.js: Ingredients for Efficient Web Applications](https://www.toptal.com/react/react-redux-and-immutablejs)
+
+#### [Redux Thunks](https://github.com/gaearon/redux-thunk)
+
+> Redux Thunk middleware allows you to write action creators that return a function instead of an action. The thunk can be used to delay the dispatch of an action, or to dispatch only if a certain condition is met. The inner function receives the store methods dispatch and getState as parameters.
+  
+- Long StackExchange [answer from Abermov on dealing and testing Redux Thunks](http://stackoverflow.com/questions/35411423/how-to-dispatch-a-redux-action-with-a-timeout/35415559#35415559).
+
+#### [Redux Saga](http://yelouafi.github.io/redux-saga/) as an alternative to of Redux Thunks.
+
+> "Redux Saga is a co-processing library for listening to actions, spawning background work, and dispatching results, ideal for HTTP requests and other side effects"
+
+- GitHub Issue #70 [discussion on documenting Redux Saga](https://github.com/yelouafi/redux-saga/issues/70)
+
+testAllTheThings()!
+-------------------
 
 ![](http://tomarra.azurewebsites.net/wp-content/uploads/2011/09/Test_All_The_Things.png)
 
@@ -96,6 +153,8 @@ Using [Karma with WebPack](http://mike-ward.net/2015/09/07/tips-on-setting-up-ka
 #### Testing Stores
 
 [Mocha Testing Redux](https://www.codementor.io/reactjs/tutorial/redux-unit-test-mocha-mocking)[^1]
+
+Testing [Redux Saga](http://yelouafi.github.io/redux-saga/docs/advanced/Testing.html)
 
 ### Integraton Testing
 
@@ -243,9 +302,9 @@ Use [data-selenium-id](http://webdesign.tutsplus.com/tutorials/all-you-need-to-k
 [Mastering Selenium WebDriver](http://my.safaribooksonline.com/book/web-development/9781784394356) *NOTE: TestNG!*  
 [Selenium Testing Tools Cookbook - Second Edition](http://my.safaribooksonline.com/book/software-engineering-and-development/software-testing/9781784392512) *NOTE: TestNG!  
 
-#### Nightwatch
+#### [Nightwatch](http://nightwatchjs.org/)
 
-[API](http://nightwatchjs.org/api)
+Nightwatch [API](http://nightwatchjs.org/api)
 
 | Selenium Test Package | Reason                                                                                      |
 |:----------------------|:--------------------------------------------------------------------------------------------|
@@ -314,30 +373,40 @@ Run the Nightwatch acceptance tests:
 
 [React Starter Kit using Nightwatch](https://github.com/dqdinh/react-webpack-starter)  
 
+#### Intern/Leadfoot
+
+The marketing spin:
+
+> Leadfoot is a JavaScript client library that brings cross-platform consistency to the Selenium WebDriver API. Leadfoot is also the only WebDriver client library that includes an exhaustive unit test suite that verifies that results are consistently returned from all remote drivers. Through this test suite we have discovered and reported over 15 defects to upstream WebDriver server implementers.
+
+> Intern is a complete framework for testing Web sites and applications. It’s built around standards like WebDriver and was designed from the ground up to be the most powerful, flexible, and reliable JavaScript testing system in the world. Intern is minimally prescriptive and enforces only a basic set of best practices designed to ensure your tests stay maintainable over time.
+
+To install:
+
+```
+% npm i -D intern
+```
+
+##### [Dig Dug](https://theintern.github.io/digdug/index.html)
+
+Dig Dug is a simple abstraction library from the Intern group for downloading and launching WebDriver service tunnels and interacting with the REST APIs of these services.
+
+The following services are currently supported:
+
+- BrowserStack
+- Sauce Labs
+- TestingBot
+
 Misc
 ----
+[Cycle.js](https://egghead.io/series/cycle-js-fundamentals) is a framework where your app is described as a simple function taking an event stream as input and outputting an event stream.
 
-| Code Style Package | Reason                                                                                                                                                                                                                    |
-|:-------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| gh-pages           | Task for publishing files to a gh-pages branch on GitHub.                                                                                                                                                                 |
-| jscs[^1]           | Code style linter/formatter for programmatically enforcing your style guide. \[[NOTE: 3.0 is **last** version! Combining forces with ESLint.](https://medium.com/@markelog/jscs-end-of-the-line-bc9bf0b3fdb2#.xidxxv6oj)] |
+Cycle.js builds on RxJS and is as a reactive and functional JavaScript framework. What does that mean? In the course, André Staltz, the creator of Cycle.js, will explain it to us.
 
-
-React
-=====
-
-[Best Practices](https://blog.risingstack.com/react-js-best-practices-for-2016/)
-
-React Form Validation
----------------------
-
-* Determine which state you need to represent the form. Input values and error messages are the obvious ones to start with, but you may need others at a minimum, such as checkng whether a field has been interacted with yet.
-* Write a render() method which uses that state.
-* Hook up event handlers which update the state as necessary when form input changes.
-* The fun starts when you realise you need to use the same valiation code at different times. For onChange/onBlur, you need to be able to validate fields and update the related state individually. For onSubmit validation, you need to be able to validate every field.
-* Cross-field validation adds to the fun, as does async validation, debouncing inputs and being able to show soft warnings rather than validation errors. Browsers auto-populating fields just adds cruelty when you thought you were done.
-* Depending on how complex your form is, you may not encounter/need all this.
-[The proposal for the upcoming rewrite of redux-form](https://github.com/erikras/redux-form/issues/726) is an interested read related to form validation in React, as it describes two ways to do lots of different things you you need to do to handle forms (the old API and the new). [react-formal](https://github.com/jquense/react-formal) is also interesting as a schema-based approach to form validation. Even if you're not using form libraries, they're solving the same problems you'll be encountering soon.
+| Package | Reason                                                                                                                                                                                                                    |
+|:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| gh-pages | Task for publishing files to a gh-pages branch on GitHub.                                                                                                                                                                 |
+| jscs[^1] | Code style linter/formatter for programmatically enforcing your style guide. \[[NOTE: 3.0 is **last** version! Combining forces with ESLint.](https://medium.com/@markelog/jscs-end-of-the-line-bc9bf0b3fdb2#.xidxxv6oj)] |
 
  [^1]: Not currently used in project.
  
