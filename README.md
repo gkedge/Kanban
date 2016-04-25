@@ -239,12 +239,13 @@ Though Selenium servers support all popular browsers (&hellip; and some *unpopul
 Download one of the Browser WebDrivers from the table above and run. You may wish to put the downloaded WebDriver in your $PATH (no, I'm not showing you how to do that).  If your WebDriver of interest is ChromeDriver and it is in $PATH:
 
 ```
-    % chromedriver --url-base=/wd/hub
+    % chromedriver --url-base=/wd/hub --verbose=1
       Starting ChromeDriver 2.21.371459 (36d3d07f660ff2bc1bf28a75d1cdabed0983e7c4) on port 9515
       Only local connections are allowed.
 ```
+> *There’s a bug with chromedriver on OSX Mavericks that can be fixed by running in verbose mode.*
 
-Note the port. Your chosen client will have to know the port your Selenium server is bound.
+Note the port (here for chromedrive, it is 9515). Your chosen client will have to know the port your Selenium server is bound.
 
 ##### SeleniumHQ IDE
 SeleniumHQ provides a specialized IDE that records a user's activity to capture a scripts that can run within its client.  I am avoiding this tact and focusing on manually created tests leveraging PageObjects to ensure a less-brittle test suite. [Please read this for why.](http://code.tutsplus.com/articles/maintainable-automated-ui-tests--net-35089).
