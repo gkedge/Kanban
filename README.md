@@ -455,9 +455,11 @@ Run the Nightwatch acceptance tests:
 [React Starter Kit using Nightwatch](https://github.com/dqdinh/react-webpack-starter)  
 
 #### [Intern](https://theintern.github.io/intern/#what-is-intern)/[Leadfoot](https://theintern.github.io/leadfoot/)
-***Note:*** Intern is an excellent option, but I am investing heavily into Webpack and there is little assistance with 
-integrating Intern into the Webpack ecosystem. It is a side goal to be able to run acceptance testing continuously against 
-a headless browser lise PhantomJS or SlimmerJS and I am looking to Webpack to make that at easy as possible. 
+
+***Note:*** Intern is an excellent option, however I am investing heavily into Webpack and there is little assistance with 
+integrating Intern into the Webpack ecosystem. It is a side goal to be able to run acceptance testing continuously 
+against a headless browser using [PhantomJS](http://phantomjs.org) or [SlimmerJS](https://slimerjs.org/) and I am looking 
+to Webpack to make that at easy as possible. 
 
 The marketing spin: 
 
