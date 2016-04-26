@@ -13,7 +13,7 @@ module.exports = {
         kanban.assert.title('Kanban app');
     },
 
-    'Add 1st Lane and remove': function (client) {
+    'Add 1st Lane and remove': "skip" + function (client) {
         var laneNum = laneNumCounter++;
         kanban.addLane().expect.element(kanban.laneSele(laneNum)).to.be.visible.before(100);
         kanban.expect.element(kanban.deleteLaneBtnSele(laneNum)).to.be.present.before(100);
@@ -32,14 +32,14 @@ module.exports = {
             .expect.element(kanban.laneSele(laneNum)).to.not.be.present.after(100);
     },
 
-    'Add 1st Note to 1st Lane then remove note and lane': function (client) {
+    'Add 1st Note to 1st Lane then remove note and lane': "skip" + function (client) {
         var laneNum = laneNumCounter++;
         kanban.addLane().expect.element(kanban.laneSele(laneNum))
             .to.be.present.before(100);
         kanban.addNote(laneNum).expect.element(kanban.noteSele(laneNum, 0))
             .to.be.present.before(100);
         // client.pause(5000);
-        
+
         kanban.laneNotes(laneNum, function (notes) {
             expect(notes.value.length).to.equal(1);
         });
@@ -48,7 +48,7 @@ module.exports = {
             .to.be.visible.after(100)
             .and.text.to.equal('New task');
 
-        kanban.deleteLNote(laneNum, 0)
+        kanban.deleteNote(laneNum, 0)
             .expect.element(kanban.noteSele(laneNum, 0)).to.not.be.present.after(100);
 
         kanban.laneNotes(laneNum, function (notes) {
@@ -59,7 +59,7 @@ module.exports = {
             .expect.element(kanban.laneSele(laneNum)).to.not.be.present.after(100);
     },
 
-    'Add 3 Notes to 1st Lane then remove each note and lane': function (client) {
+    'Add 3 Notes to 1st Lane then remove each note and lane': "skip" + function (client) {
         var laneNum = laneNumCounter++;
         kanban.addLane().expect.element(kanban.laneSele(laneNum))
             .to.be.visible.before(100);
@@ -90,13 +90,13 @@ module.exports = {
             expect(notes.value.length).to.equal(3);
         });
 
-        kanban.deleteLNote(laneNum, 0)
+        kanban.deleteNote(laneNum, 0)
             .expect.element(kanban.noteSele(laneNum, 2)).to.not.be.present.after(100);
 
-        kanban.deleteLNote(laneNum, 0)
+        kanban.deleteNote(laneNum, 0)
             .expect.element(kanban.noteSele(laneNum, 1)).to.not.be.present.after(100);
 
-        kanban.deleteLNote(laneNum, 0)
+        kanban.deleteNote(laneNum, 0)
             .expect.element(kanban.noteSele(laneNum, 0)).to.not.be.present.after(100);
 
         kanban.laneNotes(laneNum, function (notes) {
@@ -107,7 +107,7 @@ module.exports = {
             .expect.element(kanban.laneSele(laneNum)).to.not.be.present.after(100);
     },
 
-    'Add 3 lanes w/ the 1st lane containing 3 notes then remove each note and lane': function (client) {
+    'Add 3 lanes w/ the 1st lane containing 3 notes then remove each note and lane': "skip" + function (client) {
         var firstLane  = laneNumCounter++,
             secondLane = laneNumCounter++,
             thirdLane  = laneNumCounter++;
@@ -145,22 +145,83 @@ module.exports = {
         kanban.addLanes(3);
         kanban.setLaneValue(client, firstLane, 'Backlog');
 
-        kanban.addNotes(firstLane, 3);
+        kanban.addNotes(firstLane, 6);
         kanban.setNoteValue(client, firstLane, 0, 'Feed Dog');
         kanban.setNoteValue(client, firstLane, 1, 'Leash Dog');
         kanban.setNoteValue(client, firstLane, 2, 'Walk Dog');
 
-        client.moveToElement(kanban.noteSele(firstLane, 0), 1, 1);
-        client.mouseButtonDown(0);
-        // client.pause(1000);
-        // client.mouseButtonUp();
+        kanban.setNoteValue(client, firstLane, 3, 'Feed Cat');
+        kanban.setNoteValue(client, firstLane, 4, 'Open Door');
+        kanban.setNoteValue(client, firstLane, 5, 'Kick out Cat');
 
-        client.moveToElement(kanban.laneSele(secondLane), 1, 1);
-        client.pause(1000);
-        // client.mouseButtonDown();
-        // client.pause(2000);
-        client.mouseButtonUp(0);
+        // Drag 'Feed Dog' to 2nd Lane.
+        kanban.drag(kanban.noteSele(firstLane, 0), kanban.laneSele(secondLane))
+            .expect.element(kanban.noteSele(secondLane, 0))
+            .to.be.present.before(100);
+
+        kanban.expect.element(kanban.noteValueSele(secondLane, 0))
+            .text.to.equal('Feed Dog');
+
+        // Drag 'Feed Dog' back to 1st Lane.
+        kanban.drag(kanban.noteSele(secondLane, 0), kanban.noteSele(firstLane, 0))
+            .expect.element(kanban.noteSele(firstLane, 0))
+            .to.be.present.before(100);
+
+        kanban.expect.element(kanban.noteValueSele(firstLane, 0))
+            .text.to.equal('Feed Dog');
+
+        // Drag 'Kick out Cat' to 2nd Lane.
+        kanban.drag(kanban.noteSele(firstLane, 5), kanban.laneSele(secondLane))
+            .expect.element(kanban.noteSele(secondLane, 0))
+            .to.be.present.before(100);
+
+        kanban.expect.element(kanban.noteValueSele(secondLane, 0))
+            .text.to.equal('Kick out Cat');
+
+        // Drag 'Feed Cat' to 2nd Lane.
+        kanban.drag(kanban.noteSele(firstLane, 3), kanban.noteSele(secondLane, 0))
+            .expect.element(kanban.noteSele(secondLane, 0))
+            .to.be.present.before(100);
+
+        kanban.expect.element(kanban.noteValueSele(secondLane, 0))
+            .text.to.equal('Feed Cat');
+
+        // Drag 'Open Door' to 2nd Lane.
+        kanban.drag(kanban.noteSele(firstLane, 3), kanban.noteSele(secondLane, 1))
+            .expect.element(kanban.noteSele(secondLane, 1))
+            .to.be.present.before(100);
+
+        kanban.expect.element(kanban.noteValueSele(secondLane, 1))
+            .text.to.equal('Open Door');
+
+        // Drag 'Kick out Cat' to 3rd Lane.
+        kanban.drag(kanban.noteSele(secondLane, 2), kanban.laneSele(thirdLane))
+            .expect.element(kanban.noteSele(thirdLane, 0))
+            .to.be.present.before(100);
+
+        kanban.expect.element(kanban.noteValueSele(thirdLane, 0))
+            .text.to.equal('Kick out Cat');
+
+        // Drag 'Feed Cat' to 3rd Lane.
+        kanban.drag(kanban.noteSele(secondLane, 0), kanban.noteSele(thirdLane, 0))
+            .expect.element(kanban.noteSele(thirdLane, 0))
+            .to.be.present.before(100);
+
+        kanban.expect.element(kanban.noteValueSele(thirdLane, 0))
+            .text.to.equal('Feed Cat');
+
+        // Drag 'One Door' to 2nd Lane.
+        kanban.drag(kanban.noteSele(secondLane, 0), kanban.noteSele(thirdLane, 1))
+            .expect.element(kanban.noteSele(thirdLane, 1))
+            .to.be.present.before(100);
+
+        kanban.expect.element(kanban.noteValueSele(thirdLane, 1))
+            .text.to.equal('Open Door');
+
         client.pause(2000);
+        // kanban.setNoteValue(client, secondLane, 1, 'Feed Cat');
+
+        // client.drag(kanban.noteSele(secondLane, 1), kanban.laneSele(thirdLane));
 
         kanban.deleteLane(firstLane);
         kanban.deleteLane(thirdLane);

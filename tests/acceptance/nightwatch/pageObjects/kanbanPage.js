@@ -66,7 +66,7 @@ var kanbanCommands = {
         return this;
     },
 
-    deleteLNote: function (laneNum, noteNum) {
+    deleteNote: function (laneNum, noteNum) {
         return this.moveToElement(this.deleteNoteBtnSele(laneNum, noteNum), 2, 2)
             .click(this.deleteNoteBtnSele(laneNum, noteNum));
     },

@@ -9,7 +9,7 @@ import {
 import TestBackend from 'react-dnd-test-backend';
 import {DragDropContext} from 'react-dnd';
 import assert from 'assert';
-import Note from 'app/components/Note.jsx';
+import Note from '../../app/components/Note.jsx';
 
 describe('Note', () => {
   it('renders children', () => {
