@@ -155,7 +155,7 @@ module.exports = {
         kanban.setNoteValue(client, firstLane, 5, 'Kick out Cat');
 
         // Drag 'Feed Dog' to 2nd Lane.
-        kanban.drag(kanban.noteSele(firstLane, 0), kanban.laneSele(secondLane))
+        client.drag(kanban.noteSele(firstLane, 0), kanban.laneSele(secondLane))
             .expect.element(kanban.noteSele(secondLane, 0))
             .to.be.present.before(100);
 

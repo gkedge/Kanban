@@ -3,7 +3,7 @@
     "tests/acceptance/nightwatch"
   ],
   "output_folder": "tests/acceptance/nightwatch/reports",
-  "custom_commands_path": "./tests/commands",
+  "custom_commands_path": "./tests/acceptance/commands",
   "custom_assertions_path": "",
   "page_objects_path": "tests/acceptance/nightwatch/pageObjects",
   "globals_path": "",
