@@ -242,8 +242,8 @@ Testing [Redux Saga](http://yelouafi.github.io/redux-saga/docs/advanced/Testing.
 #### [SeleniumHQ](http://docs.seleniumhq.org/)
 Every solution considered for this project at this point leverages Selenium **'servers'**. The reason for quoting 
 'servers' is running a Selenium server, though easy, can be a tad confusing. A central truism for all Selenium 'servers' 
-is that they all provide a HTTP ReST API that leverages JSON-formated data for all payloads and responses. That protocol 
-used to communicate between a test clients and Selenium Server has been standaredized as the 
+is that they all provide a HTTP ReST API that leverages JSON-formatted data for all payloads and responses. That protocol 
+used to communicate between a test clients and Selenium Server has been standardized as the 
 [W3C WebDriver Standard](https://w3c.github.io/webdriver/webdriver-spec.htmlJSON) (formerly known as, the 
 [JSON Wire Protocol](https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol) and, for this README, referred to as 
 The Protocol). 
