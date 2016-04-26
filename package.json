@@ -11,8 +11,7 @@
     "deploy": "gh-pages -d build",
     "test": "karma start",
     "tdd": "karma start --auto-watch --no-single-run",
-    "acceptance-NW": "nightwatch",
-    "acceptance-intern": "intern"
+    "acceptance-NW": "nightwatch"
   },
   "keywords": [
     "webpack",

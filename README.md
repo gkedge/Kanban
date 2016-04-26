@@ -506,7 +506,6 @@ UX Visual Regression Testing
 - [Argus Eyes](http://arguseyes.io/) (w/ [Blink-diff](http://yahoo.github.io/blink-diff/)) - A lightweight CLI tool for 
   visual regression testing. 
 
-
 Misc
 ----
 [Cycle.js](https://egghead.io/series/cycle-js-fundamentals) is a framework where your app is described as a simple 
