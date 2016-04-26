@@ -158,7 +158,7 @@ Using [Karma with WebPack](http://mike-ward.net/2015/09/07/tips-on-setting-up-ka
 
 Testing [Redux Saga](http://yelouafi.github.io/redux-saga/docs/advanced/Testing.html)
 
-### Integraton Testing
+### Integration Testing
 
 [RestAssured](https://github.com/jayway/rest-assured/wiki/Usage)[^1] 
 
@@ -239,13 +239,13 @@ Though Selenium servers support all popular browsers (&hellip; and some *unpopul
 Download one of the Browser WebDrivers from the table above and run. You may wish to put the downloaded WebDriver in your $PATH (no, I'm not showing you how to do that).  If your WebDriver of interest is ChromeDriver and it is in $PATH:
 
 ```
-    % chromedriver --url-base=/wd/hub --verbose=1
-      Starting ChromeDriver 2.21.371459 (36d3d07f660ff2bc1bf28a75d1cdabed0983e7c4) on port 9515
+    % chromedriver --port=4444 --url-base=/wd/hub --verbose=1
+      Starting ChromeDriver 2.21.371459 (36d3d07f660ff2bc1bf28a75d1cdabed0983e7c4) on port 4444
       Only local connections are allowed.
 ```
 > *There’s a bug with chromedriver on OSX Mavericks that can be fixed by running in verbose mode.*
 
-Note the port (here for chromedrive, it is 9515). Your chosen client will have to know the port your Selenium server is bound.
+Note the port (here for chromedrive, it is 4444). Your chosen client will have to know the port your Selenium server is bound.
 
 ##### SeleniumHQ IDE
 SeleniumHQ provides a specialized IDE that records a user's activity to capture a scripts that can run within its client.  I am avoiding this tact and focusing on manually created tests leveraging PageObjects to ensure a less-brittle test suite. [Please read this for why.](http://code.tutsplus.com/articles/maintainable-automated-ui-tests--net-35089).
@@ -351,7 +351,7 @@ If you can forgo having Nightwatch control the Selenium Server's lifetime, start
   "test_settings": {
     "default": {
       "selenium_host": "127.0.0.1",
-      "selenium_port": "9515", 
+      "selenium_port": "4444", 
    ...
    }
  }
@@ -376,13 +376,13 @@ Run the Nightwatch acceptance tests:
 
 [React Starter Kit using Nightwatch](https://github.com/dqdinh/react-webpack-starter)  
 
-#### Intern/Leadfoot
+#### [Intern](https://theintern.github.io/intern/#what-is-intern)/[Leadfoot](https://theintern.github.io/leadfoot/)
 
 The marketing spin:
 
-> Leadfoot is a JavaScript client library that brings cross-platform consistency to the Selenium WebDriver API. Leadfoot is also the only WebDriver client library that includes an exhaustive unit test suite that verifies that results are consistently returned from all remote drivers. Through this test suite we have discovered and reported over 15 defects to upstream WebDriver server implementers.
+> [Leadfoot](https://theintern.github.io/leadfoot/) is a JavaScript client library that brings cross-platform consistency to the Selenium WebDriver API. Leadfoot is also the only WebDriver client library that includes an exhaustive unit test suite that verifies that results are consistently returned from all remote drivers. Through this test suite we have discovered and reported over 15 defects to upstream WebDriver server implementers.
 
-> Intern is a complete framework for testing Web sites and applications. It’s built around standards like WebDriver and was designed from the ground up to be the most powerful, flexible, and reliable JavaScript testing system in the world. Intern is minimally prescriptive and enforces only a basic set of best practices designed to ensure your tests stay maintainable over time.
+> [Intern](https://theintern.github.io/intern/#what-is-intern) is a complete framework for testing Web sites and applications. It’s built around standards like WebDriver and was designed from the ground up to be the most powerful, flexible, and reliable JavaScript testing system in the world. Intern is minimally prescriptive and enforces only a basic set of best practices designed to ensure your tests stay maintainable over time.
 
 To install:
 
@@ -407,6 +407,13 @@ The following services are currently supported:
 #### [Codecept](http://codecept.io/)
 
 > CodeceptJS is based on Mocha and uses WebDriverIO library behind the scene. However, complexity of WebDriver libraries are hidden inside DSL for you to concentrate on test scenarios. That also makes CodeceptJS easy to maintain and read.
+
+UX Visual Regression Testing
+----------------------------
+
+- [Argus Eyes](http://arguseyes.io/) (w/ [Blink-diff](http://yahoo.github.io/blink-diff/)) - A lightweight CLI tool for visual regression testing
+
+
 
 Misc
 ----
