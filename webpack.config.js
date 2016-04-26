@@ -16,7 +16,8 @@ const PATHS = {
     app: path.join(__dirname, 'app'),
     build: path.join(__dirname, 'build'),
     style: path.join(__dirname, 'app/main.css'),
-    test: path.join(__dirname, 'specs', 'integration')
+    test: path.join(__dirname, 'tests/unit'),
+    acceptance: path.join(__dirname, 'tests/commands/**/.js')
 };
 
 process.env.BABEL_ENV = TARGET;
@@ -172,7 +173,7 @@ if (TARGET === 'build' || TARGET === 'stats') {
     });
 }
 
-if (TARGET === 'test' || TARGET === 'tdd' || TARGET === 'integration') {
+if (TARGET === 'test' || TARGET === 'tdd' || TARGET.startsWith('acceptance')) {
     module.exports = merge(common, {
         devtool: 'inline-source-map',
         stats: {
@@ -188,7 +189,8 @@ if (TARGET === 'test' || TARGET === 'tdd' || TARGET === 'integration') {
         resolve: {
             alias: {
                 'app': PATHS.app,
-                'test': PATHS.test
+                'test': PATHS.test,
+                'acceptance': PATHS.acceptance
             }
         },
         module: {
@@ -203,7 +205,7 @@ if (TARGET === 'test' || TARGET === 'tdd' || TARGET === 'integration') {
                 {
                     test: /\.jsx?$/,
                     loaders: ['babel?cacheDirectory'],
-                    include: PATHS.test
+                    include: [PATHS.test, PATHS.acceptance]
                 }
             ]
         }

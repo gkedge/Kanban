@@ -26,7 +26,7 @@ module.exports = function karmaConfig(config) {
             'node_modules/phantomjs-polyfill/bind-polyfill.js',
 
             // Grab all files in the specs directory containing .spec.js or .spec.jsx
-            'specs/**/*.spec.jsx'
+            'tests/unit/**/*.spec.jsx'
         ],
 
         preprocessors: {
@@ -35,7 +35,7 @@ module.exports = function karmaConfig(config) {
             // Convert files with webpack and load sourcemaps
             'app/**/*.jsx'       : ['coverage'],
             // './build/app.*.js'   : ['webpack'],
-            'specs/**/*.spec.jsx': ['webpack', 'sourcemap']
+            'tests/unit/**/*.spec.jsx': ['webpack', 'sourcemap']
         },
 
         browsers: [

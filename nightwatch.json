@@ -1,16 +1,16 @@
 {
   "src_folders": [
-    "integration"
+    "tests/acceptance/nightwatch"
   ],
-  "output_folder": "integration/reports",
-  "custom_commands_path": "",
+  "output_folder": "tests/acceptance/nightwatch/reports",
+  "custom_commands_path": "./tests/commands",
   "custom_assertions_path": "",
-  "page_objects_path": "integration/pageObjects",
+  "page_objects_path": "tests/acceptance/nightwatch/pageObjects",
   "globals_path": "",
   "__commentOut: selenium": {
     "start_process": true,
     "server_path": "lib/selenium-server-standalone-2.53.0.jar",
-    "log_path": "integration/log"
+    "log_path": "tests/acceptance/nightwatch/log"
   },
   "selenium": {
     "start_process": true,
@@ -19,7 +19,7 @@
       "webdriver.chrome.driver": "./lib/chromedriver.exe",
       "__osx webdriver.chrome.driver" : "/Users/greg.kedge/bin/chromedriver"
     },
-    "log_path": "integration/log"
+    "log_path": "tests/acceptance/nightwatch/log"
   },
   "test_settings": {
     "default": {
