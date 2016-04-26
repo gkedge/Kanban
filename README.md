@@ -408,6 +408,13 @@ The following services are currently supported:
 
 > CodeceptJS is based on Mocha and uses WebDriverIO library behind the scene. However, complexity of WebDriver libraries are hidden inside DSL for you to concentrate on test scenarios. That also makes CodeceptJS easy to maintain and read.
 
+UX Visual Regression Testing
+----------------------------
+
+- [Argus Eyes](http://arguseyes.io/) (w/ [Blink-diff](http://yahoo.github.io/blink-diff/)) - A lightweight CLI tool for visual regression testing
+
+
+
 Misc
 ----
 [Cycle.js](https://egghead.io/series/cycle-js-fundamentals) is a framework where your app is described as a simple function taking an event stream as input and outputting an event stream.

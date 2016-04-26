@@ -13,7 +13,7 @@ module.exports = {
         kanban.assert.title('Kanban app');
     },
 
-    'Add 1st Lane and remove': "skip" + function (client) {
+    'Add 1st Lane and remove': function () {
         var laneNum = laneNumCounter++;
         kanban.addLane().expect.element(kanban.laneSele(laneNum)).to.be.visible.before(100);
         kanban.expect.element(kanban.deleteLaneBtnSele(laneNum)).to.be.present.before(100);
@@ -32,7 +32,7 @@ module.exports = {
             .expect.element(kanban.laneSele(laneNum)).to.not.be.present.after(100);
     },
 
-    'Add 1st Note to 1st Lane then remove note and lane': "skip" + function (client) {
+    'Add 1st Note to 1st Lane then remove note and lane': "skip" + function () {
         var laneNum = laneNumCounter++;
         kanban.addLane().expect.element(kanban.laneSele(laneNum))
             .to.be.present.before(100);
@@ -59,7 +59,7 @@ module.exports = {
             .expect.element(kanban.laneSele(laneNum)).to.not.be.present.after(100);
     },
 
-    'Add 3 Notes to 1st Lane then remove each note and lane': "skip" + function (client) {
+    'Add 3 Notes to 1st Lane then remove each note and lane': function (client) {
         var laneNum = laneNumCounter++;
         kanban.addLane().expect.element(kanban.laneSele(laneNum))
             .to.be.visible.before(100);
@@ -107,7 +107,7 @@ module.exports = {
             .expect.element(kanban.laneSele(laneNum)).to.not.be.present.after(100);
     },
 
-    'Add 3 lanes w/ the 1st lane containing 3 notes then remove each note and lane': "skip" + function (client) {
+    'Add 3 lanes w/ the 1st lane containing 3 notes then remove each note and lane': function (client) {
         var firstLane  = laneNumCounter++,
             secondLane = laneNumCounter++,
             thirdLane  = laneNumCounter++;
@@ -217,11 +217,6 @@ module.exports = {
 
         kanban.expect.element(kanban.noteValueSele(thirdLane, 1))
             .text.to.equal('Open Door');
-
-        client.pause(2000);
-        // kanban.setNoteValue(client, secondLane, 1, 'Feed Cat');
-
-        // client.drag(kanban.noteSele(secondLane, 1), kanban.laneSele(thirdLane));
 
         kanban.deleteLane(firstLane);
         kanban.deleteLane(thirdLane);
