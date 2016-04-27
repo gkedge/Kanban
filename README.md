@@ -137,11 +137,11 @@ Blog Posts that support augmenting Redux's immutability with immutable.js or, be
 testAllTheThings()!
 -------------------
 
-![](http://tomarra.azurewebsites.net/wp-content/uploads/2011/09/Test_All_The_Things.png)
+![](imgs//Test_All_The_Things.png)
 
 Tests help understand code written a month prior better than code comments ever will&hellip;
  
-![](https://s3.amazonaws.com/codementor_content/2015-Dec-week1/lost.jpg)
+![](imgs//lost.jpg)
 
 The testing pyramid indicates that a project should invest an overwhelming majority of effort into the Unit Testing and 
 the Integration (service) testing with a focus on them running very fast. A smaller effort is extended into the 
@@ -158,7 +158,7 @@ straightforward even for testing error paths (not 'greased path).
 So, lets concentrate on ReactJS UT testing alternatives first prior to getting to the numerous 'Acceptance', web driving 
 alternatives. 
 
-![](http://image.slidesharecdn.com/leveragingqualityv1-141001112804-phpapp01/95/slow-down-to-speed-up-leveraging-quality-to-enable-productivity-and-speed-with-14-638.jpg?cb=1412162989)
+![](imgs/Testing_Pyramid.jpg)
 
 [Automated Testing Best Practices](https://github.com/xolvio/automated-testing-best-practices#automated-testing-best-practices-by-xolvio)
 
