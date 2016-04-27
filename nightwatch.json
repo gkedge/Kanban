@@ -12,12 +12,11 @@
     "server_path": "lib/selenium-server-standalone-2.53.0.jar",
     "log_path": "tests/acceptance/nightwatch/log"
   },
-  "__commentOut: selenium": {
+  "selenium": {
     "start_process": true,
     "server_path": "./lib/selenium-server-standalone-2.53.0.jar",
     "cli_args": {
-      "webdriver.chrome.driver": "./lib/chromedriver.exe",
-      "__osx webdriver.chrome.driver" : "/Users/greg.kedge/bin/chromedriver"
+      "webdriver.chrome.driver": "./lib/chromedriver"
     },
     "log_path": "tests/acceptance/nightwatch/log"
   },
@@ -31,12 +30,12 @@
         "enabled": false,
         "path": ""
       },
-      "__commentOut: desiredCapabilities": {
+      "desiredCapabilities": {
         "browserName": "firefox",
         "javascriptEnabled": true,
         "acceptSslCerts": true
       },
-      "desiredCapabilities": {
+      "__commentOut: desiredCapabilities": {
         "browserName": "chrome",
         "javascriptEnabled": true,
         "acceptSslCerts": true
