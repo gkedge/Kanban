@@ -12,7 +12,7 @@
     "server_path": "lib/selenium-server-standalone-2.53.0.jar",
     "log_path": "tests/acceptance/nightwatch/log"
   },
-  "selenium": {
+  "__commentOut: selenium": {
     "start_process": true,
     "server_path": "./lib/selenium-server-standalone-2.53.0.jar",
     "cli_args": {
@@ -33,7 +33,11 @@
       },
       "__commentOut: desiredCapabilities": {
         "browserName": "firefox",
-        "platform": "Windows 7",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
+      },
+      "desiredCapabilities": {
+        "browserName": "chrome",
         "javascriptEnabled": true,
         "acceptSslCerts": true
       },
