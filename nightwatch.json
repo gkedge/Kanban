@@ -25,7 +25,7 @@
       "path": ""
     },
     "default": {
-      "comment": "NOTE: requires selenium-server-standalone-2.xx.0.jar to be downloaded to ./bin",
+      "comment": "NOTE: requires 'selenium' key above to be 'uncommented'",
       "desiredCapabilities": {
         "browserName": "firefox",
         "javascriptEnabled": true,
@@ -33,7 +33,8 @@
       }
     },
     "chrome": {
-      "comment": "NOTE: requires chromedriver to be downloaded to ./bin",
+      "comment0": "NOTE: No need to start selenium process; above change 'selenium' --> '__commentOut selenium'",
+      "comment1": "NOTE: 'chromedriver' works fine on OSX; not so good on Windoze",
       "desiredCapabilities": {
         "browserName": "chrome",
         "javascriptEnabled": true,
