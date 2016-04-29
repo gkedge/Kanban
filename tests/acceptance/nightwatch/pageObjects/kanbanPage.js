@@ -101,7 +101,7 @@ var kanbanCommands = {
 };
 
 module.exports = {
-    url     : 'http://localhost:8888',
+    url     : 'http://gkedge.github.io/Kanban/index.html',
     commands: [kanbanCommands],
     elements: {
         page      : 'body',
