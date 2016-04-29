@@ -239,6 +239,11 @@ Testing [Redux Saga](http://yelouafi.github.io/redux-saga/docs/advanced/Testing.
 
 ### End-to-End Acceptance Testing
 
+I am of the opinion that if an organization invests in Acceptance testing, it should be done by the UI developer team, 
+not a dedicated 'test' team. If the members of the test team are JavaScript programmers, then cool. My team has a 
+dedicated test team crafting Acceptance tests. You can find my 
+[treatise on that subject here](https://gkedge.gitbooks.io/javascript-acceptance-testing/content/). 
+ 
 #### [SeleniumHQ](http://docs.seleniumhq.org/)
 Every solution considered for this project at this point leverages Selenium **'servers'**. The reason for quoting 
 'servers' is running a Selenium server, though easy, can be a tad confusing. A central truism for all Selenium 'servers' 
