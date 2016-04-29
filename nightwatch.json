@@ -16,7 +16,7 @@
     "log_path": "tests/acceptance/nightwatch/log"
   },
   "test_settings": {
-    "launch_url": "http://localhost:8888",
+    "launch_url": "http://gkedge.github.io/Kanban/index.html",
     "selenium_port": 4444,
     "selenium_host": "localhost",
     "silent": true,
