@@ -8,9 +8,9 @@
   "page_objects_path": "tests/acceptance/nightwatch/pageObjects",
   "globals_path": "",
   "selenium": {
-    "start_process": false,
+    "start_process": true,
     "server_path": "./bin/selenium-server-standalone-2.53.0.jar",
-    "__commentOut: cli_args": {
+    "cli_args": {
       "webdriver.chrome.driver": "node_modules/.bin/chromedriver"
     },
     "log_path": "tests/acceptance/nightwatch/log"
