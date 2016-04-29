@@ -1,0 +1,12 @@
+var kanban; // Initialized in hidden 'before:'.
+module.exports = {
+    ...,
+    'Finding title': function () {
+        kaban.assert.title('Kanban app');
+    },
+    'Adding Kanban Lane': function () {
+        kanban.click('button.add-lane');
+        kanban.waitForElementVisible('div.lane[data-lane-num="0"]', 100);
+    },
+    ...
+}

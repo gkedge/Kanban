@@ -1,6 +1,6 @@
 {
   "src_folders": [
-    "tests/acceptance/nightwatch"
+    "tests/acceptance/nightwatch/specs"
   ],
   "output_folder": "tests/acceptance/nightwatch/reports",
   "custom_commands_path": "./tests/acceptance/commands",
@@ -8,44 +8,37 @@
   "page_objects_path": "tests/acceptance/nightwatch/pageObjects",
   "globals_path": "",
   "__commentOut: selenium": {
-    "start_process": true,
-    "server_path": "lib/selenium-server-standalone-2.53.0.jar",
-    "log_path": "tests/acceptance/nightwatch/log"
-  },
-  "selenium": {
-    "start_process": true,
-    "server_path": "./lib/selenium-server-standalone-2.53.0.jar",
+    "start_process": false,
+    "server_path": "./bin/selenium-server-standalone-2.53.0.jar",
     "cli_args": {
-      "webdriver.chrome.driver": "./lib/chromedriver"
+      "webdriver.chrome.driver": "node_modules/.bin/chromedriver"
     },
     "log_path": "tests/acceptance/nightwatch/log"
   },
   "test_settings": {
+    "launch_url": "http://localhost:8888",
+    "selenium_port": 4444,
+    "selenium_host": "localhost",
+    "silent": true,
+    "screenshots": {
+      "enabled": false,
+      "path": ""
+    },
     "default": {
-      "launch_url" : "http://localhost:8888",
-      "selenium_port"  : 4444,
-      "selenium_host"  : "localhost",
-      "silent": true,
-      "screenshots": {
-        "enabled": false,
-        "path": ""
-      },
+      "comment": "NOTE: requires selenium-server-standalone-2.xx.0.jar to be downloaded to ./bin",
       "desiredCapabilities": {
         "browserName": "firefox",
         "javascriptEnabled": true,
         "acceptSslCerts": true
-      },
-      "__commentOut: desiredCapabilities": {
+      }
+    },
+    "chrome": {
+      "comment": "NOTE: requires chromedriver to be downloaded to ./bin",
+      "desiredCapabilities": {
         "browserName": "chrome",
-        "javascriptEnabled": true,
-        "acceptSslCerts": true
-      },
-      "__commentOut: desiredCapabilities": {
-        "browserName": "chrome",
-        "platform": "Windows 7",
         "javascriptEnabled": true,
         "acceptSslCerts": true,
-        "chromeOptions": {
+        "__commentOut: chromeOptions": {
           "args": [
             "disable-web-security"
           ]

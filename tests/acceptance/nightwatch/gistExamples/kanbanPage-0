@@ -1,0 +1,8 @@
+module.exports = {
+    url     : 'http://localhost:8888',
+    elements: {
+        page      : 'body',
+        addLaneBtn: 'button.add-lane',
+        laneOne: 'div.lane[data-lane-num="0"]'
+    }
+};
