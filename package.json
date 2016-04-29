@@ -11,7 +11,9 @@
     "deploy": "gh-pages -d build",
     "test": "karma start",
     "tdd": "karma start --auto-watch --no-single-run",
-    "acceptance-NW": "nightwatch"
+    "acceptance-NW-firefox-COMMENT": "FOR FIREFOX TO WORK, you must add 'selenium' block that includes selenium-server-standalone-2.xx.0.jar",
+    "acceptance-NW-firefox": "nightwatch -e default",
+    "acceptance-NW-chrome": "nightwatch -e chrome"
   },
   "keywords": [
     "webpack",
@@ -28,6 +30,7 @@
     "babel-preset-react-hmre": "^1.1.0",
     "babel-preset-survivejs-kanban": "^0.3.3",
     "chai": "^3.5.0",
+    "chromedriver": "^2.21.2",
     "clean-webpack-plugin": "^0.1.8",
     "css-loader": "^0.23.1",
     "eslint": "^2.8.0",
