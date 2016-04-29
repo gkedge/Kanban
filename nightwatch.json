@@ -7,7 +7,7 @@
   "custom_assertions_path": "",
   "page_objects_path": "tests/acceptance/nightwatch/pageObjects",
   "globals_path": "",
-  "__commentOut: selenium": {
+  "selenium": {
     "start_process": false,
     "server_path": "./bin/selenium-server-standalone-2.53.0.jar",
     "cli_args": {
