@@ -10,7 +10,7 @@
   "selenium": {
     "start_process": false,
     "server_path": "./bin/selenium-server-standalone-2.53.0.jar",
-    "cli_args": {
+    "__commentOut: cli_args": {
       "webdriver.chrome.driver": "node_modules/.bin/chromedriver"
     },
     "log_path": "tests/acceptance/nightwatch/log"
