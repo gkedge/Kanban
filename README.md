@@ -209,6 +209,8 @@ Testing [Redux Saga](http://yelouafi.github.io/redux-saga/docs/advanced/Testing.
 | analyze-es6-modules[^1]                 | [static analysis of ES6 modules ](https://www.npmjs.com/package/analyze-es6-modules) determining if imports and exports align |
 | eslint                                  | [Pluggable static code analysis (linting) utility for JavaScript.](http://eslint.org/)                                        |
 | eslint-plugin-react                     | React specific linting rules for ESLint.                                                                                      |
+| expect                                  | expect is a more compact alternative to Chai or Sinon.JS.                                                                     |
+| expect-jsx                              | toEqualJSX for mjackson/expect. Can to turn React elements into JSX strings.                                                  |
 | babel-eslint                            | ESLint using Babel as the parser.                                                                                             |
 | isparta-instrumenter-loader             | Instrument Babel code using IsParta; leverages [Istanbul](https://github.com/gotwarlost/istanbul)                             |
 | react-addons-test-utils                 | Tools to assist testing React.                                                                                                |
@@ -233,6 +235,7 @@ Testing [Redux Saga](http://yelouafi.github.io/redux-saga/docs/advanced/Testing.
 | mocha                                   | A feature-rich [JavaScript test framework](https://mochajs.org/) that simplifies async testing.                               |
 | codeceptjs[^1]                          | With [CodeceptJS](http://codecept.io/), acceptance tests from user's perspective can be written.                              |
 | chai                                    | A BDD / TDD [assertion library](http://chaijs.com/).                                                                          |
+| jsx-chai                                | JSX assertions for Chai using Algolia's react-element-to-jsx-string.                                                          |
 | react-unit[^1]                          | Obviates the need for PhantomJS.                                                                                              |
 | phantomjs-prebuilt                      | Installer for PhantomJS, headless webkit with JS API.                                                                         |
 | phantomjs-polyfill                      | Polyfill for ```function.prototype.bind``` missing from PhantomJS.                                                            |
