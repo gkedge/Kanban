@@ -241,7 +241,7 @@ Testing [Redux Saga](http://yelouafi.github.io/redux-saga/docs/advanced/Testing.
 
 I am of the opinion that if an organization invests in Acceptance testing, it should be done by the UI developer team, 
 not a dedicated 'test' team. If the members of the test team are JavaScript programmers, then cool. My team has a 
-dedicated test team crafting Acceptance tests. You can find my 
+dedicated test team crafting Acceptance tests and they aren't programmers. You can find my 
 [treatise on that subject here](https://gkedge.gitbooks.io/javascript-acceptance-testing/content/). 
  
 #### [SeleniumHQ](http://docs.seleniumhq.org/)
