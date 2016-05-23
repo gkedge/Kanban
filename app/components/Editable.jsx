@@ -1,11 +1,26 @@
+/* @flow */
+
 import React from 'react';
-import autobind from 'autobind-decorator';
 
 export default class Editable extends React.Component {
     static displayName = 'KanbanEditableInput';
 
-    render() {
-        const {editing, ...props} = this.props;
+    static props:{
+        value?: string,
+        editing?: boolean,
+        onEdit?: Function,
+        onDelete?: Function,
+        onValueClick?: Function
+    };
+
+    static defaultProps:{
+        value: '',
+        editing: false,
+        onEdit: () => {}
+    };
+
+    render():Object {
+        const { editing, ...props } = this.props;
 
         return (
             <div {...props}>
@@ -13,8 +28,7 @@ export default class Editable extends React.Component {
             </div>);
     }
 
-    @autobind
-    renderEdit() {
+    renderEdit:() => Object = () => {
         return <input type="text"
                       ref={(e) => e ? e.selectionStart = this.props.value.length : null }
                       autoFocus={true}
@@ -23,15 +37,13 @@ export default class Editable extends React.Component {
                       onKeyPress={this.checkEnter}/>;
     }
 
-    @autobind
-    renderDelete() {
+    renderDelete:() => Object = () => {
         return <button
             className="delete"
             onClick={this.props.onDelete}>x</button>;
     }
 
-    @autobind
-    renderValue() {
+    renderValue:() => Object = () => {
         const onDelete = this.props.onDelete;
 
         return (
@@ -42,15 +54,13 @@ export default class Editable extends React.Component {
         );
     }
 
-    @autobind
-    checkEnter(e) {
+    checkEnter:(e:Object) => void = (e) => {
         if (e.key === 'Enter') {
             this.finishEdit(e);
         }
     }
 
-    @autobind
-    finishEdit(e) {
+    finishEdit:(e:Object) => void = (e) => {
         const value = e.target.value;
 
         if (this.props.onEdit) {

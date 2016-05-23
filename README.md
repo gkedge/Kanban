@@ -103,6 +103,13 @@ being, this section is a collection notes on Redux.
 
 Dan Aberamov's [video lessons on Redux](https://egghead.io/series/getting-started-with-redux).
 
+#### Redux Notess
+
+| Package | Reason                                                                                                                        |
+|:-------------|:------------------------------------------------------------------------------------------------------------------------------|
+| redux-react  | [static analysis of ES6 modules ](https://www.npmjs.com/package/analyze-es6-modules) determining if imports and exports align |
+
+
 #### With Redux, is fb's [immutable.js](https://facebook.github.io/immutable-js/) necessary?
 
 Blog Posts that support augmenting Redux's immutability with immutable.js or, better yet, 
@@ -212,6 +219,7 @@ Testing [Redux Saga](http://yelouafi.github.io/redux-saga/docs/advanced/Testing.
 | expect                                  | expect is a more compact alternative to Chai or Sinon.JS.                                                                     |
 | expect-jsx                              | toEqualJSX for mjackson/expect. Can to turn React elements into JSX strings.                                                  |
 | babel-eslint                            | ESLint using Babel as the parser.                                                                                             |
+| generator-react-cdk                     | React CDK *creats* React boilerplate. React-CDK tool versions are maintained by author.                                       |
 | isparta-instrumenter-loader             | Instrument Babel code using IsParta; leverages [Istanbul](https://github.com/gotwarlost/istanbul)                             |
 | react-addons-test-utils                 | Tools to assist testing React.                                                                                                |
 | react-dnd-test-backend                  | [Test React Dnd](http://gaearon.github.io/react-dnd/docs-test-backend.html).                                                  |

@@ -1,3 +1,5 @@
+/* @flow */
+
 import React from 'react';
 import {DragSource, DropTarget} from 'react-dnd';
 import ItemTypes from '../constants/itemTypes';
@@ -36,7 +38,19 @@ const noteTarget = {
     connectDropTarget: connect.dropTarget()
 }))
 export default class Note extends React.Component {
-    render() {
+    static props:{
+        id: string,
+        editing?: boolean,
+        connectDragSource?: Function,
+        connectDropTarget?: Function,
+        isDragging?: boolean,
+        onMove?: Function
+    };
+    static defaultProps:{
+        onMove: () => {}
+    };
+
+    render(): Object {
         const {
             connectDragSource, connectDropTarget,
             isDragging, editing, ...props

@@ -1,14 +1,16 @@
-const path = require('path'),
-    merge = require('webpack-merge'),
-    webpack = require('webpack'),
-    NpmInstallPlugin = require('npm-install-webpack-plugin'),
-    pkg = require('./package.json'),
-    HtmlWebpackPlugin = require('html-webpack-plugin'),
-    CleanPlugin = require('clean-webpack-plugin'),
-    ExtractTextPlugin = require('extract-text-webpack-plugin'),
-    stylelint = require('stylelint');
 // ,
 //     configSuitcss = require('stylelint-config-suitcss');
+const path = require('path'),
+      CleanPlugin = require('clean-webpack-plugin'),
+      ExtractTextPlugin = require('extract-text-webpack-plugin'),
+      FlowStatusWebpackPlugin = require('flow-status-webpack-plugin'),
+      HtmlWebpackPlugin = require('html-webpack-plugin'),
+
+      merge = require('webpack-merge'),
+      webpack = require('webpack'),
+      NpmInstallPlugin = require('npm-install-webpack-plugin'),
+      pkg = require('./package.json'),
+      stylelint = require('stylelint');
 
 
 const TARGET = process.env.npm_lifecycle_event;
@@ -95,6 +97,9 @@ if (TARGET === 'start' || !TARGET) {
             new webpack.HotModuleReplacementPlugin(),
             new NpmInstallPlugin({
                 save: true // --save
+            }),
+            new FlowStatusWebpackPlugin({
+                restartFlow: false
             })
         ]
     });
@@ -208,7 +213,12 @@ if (TARGET === 'test' || TARGET === 'tdd' || TARGET.startsWith('acceptance')) {
                     include: [PATHS.test, PATHS.acceptance]
                 }
             ]
-        }
+        },
+        plugins: [
+            new FlowStatusWebpackPlugin({
+                restartFlow: false
+            })
+        ]
         
     });
 }
